@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/dom.dart' as dom;
-import 'package:timetable/models/timetable.dart';
-import 'package:timetable/screens/currentweek.dart';
+import 'package:timetable/screens/listweeks.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,35 +25,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<TimeTable> timetablelist = [];
-
   void initstate() {
     super.initState();
-
-    getWebsiteData();
-  }
-
-  Future getWebsiteData() async {
-    final url = Uri.parse('https://ictis.ru/54.html');
-    final responce = await http.get(url);
-    dom.Document html = dom.Document.html(responce.body);
-
-    final titles = html
-        .querySelectorAll('body > div.container > a')
-        .map((e) => e.innerHtml.trim())
-        .toList();
-
-    if (!mounted) return;
-
-    setState(() {
-      timetablelist = List.generate(
-          titles.length, (index) => TimeTable(number: titles[index]));
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    getWebsiteData();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -79,28 +53,166 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: timetablelist.length,
-        itemBuilder: (context, index) {
-          final timetable = timetablelist[index];
-          return ListTile(
+      body: ListView(
+        padding: const EdgeInsets.all(8),
+        children: <Widget>[
+          ListTile(
+            title: const Text('КТбо1-7'),
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => CurrentWeek(
-                          title: '${timetable.number} неделя',
-                          week: index + 1,
+                    builder: (context) => const ListWeeks(
+                          index: 7,
+                          name: 'КТбо1-7',
                         )),
               );
             },
-            title: Text(
-              '${timetable.number} неделя',
-              style: const TextStyle(color: Colors.black),
-            ),
-          );
-        },
+          ),
+          ListTile(
+            title: const Text('КТбо1-8'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 8,
+                          name: 'КТбо1-8',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо1-9'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 9,
+                          name: 'КТбо1-9',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо1-10'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 10,
+                          name: 'КТбо1-10',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо2-7'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 53,
+                          name: 'КТбо2-7',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо2-8'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 54,
+                          name: 'КТбо2-8',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо2-9'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 55,
+                          name: 'КТбо2-9',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо2-10'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 56,
+                          name: 'КТбо2-10',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо3-7'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 100,
+                          name: 'КТбо3-7',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо3-8'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 101,
+                          name: 'КТбо3-8',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо3-9'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 102,
+                          name: 'КТбо3-9',
+                        )),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text('КТбо3-10'),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const ListWeeks(
+                          index: 103,
+                          name: 'КТбо3-10',
+                        )),
+              );
+            },
+          ),
+        ],
       ),
     );
   }

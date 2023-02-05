@@ -5,10 +5,17 @@ import 'package:timetable/models/timetable.dart';
 import 'package:timetable/screens/curentday.dart';
 
 class CurrentWeek extends StatelessWidget {
-  const CurrentWeek({super.key, required this.title, required this.week});
+  const CurrentWeek(
+      {super.key,
+      required this.title,
+      required this.week,
+      required this.index,
+      required this.name});
 
   final String title;
+  final String name;
   final int week;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -17,27 +24,39 @@ class CurrentWeek extends StatelessWidget {
       home: MyHomePage(
         title: title,
         week: week,
+        index: index,
+        name: name,
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title, required this.week});
+  const MyHomePage(
+      {super.key,
+      required this.title,
+      required this.week,
+      required this.index,
+      required this.name});
 
   final String title;
+  final String name;
   final int week;
+  final int index;
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _MyHomePageState(title, week);
+  State<MyHomePage> createState() => _MyHomePageState(title, week, index, name);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(this.title, this.week);
+  _MyHomePageState(this.title, this.week, this.index, this.name);
 
   final String title;
+  final String name;
   final int week;
+  final int index;
+
   List<TimeTable> timetablelist = [];
 
   void initstate() {
@@ -47,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future getWebsiteData() async {
-    final url = Uri.parse('https://ictis.ru/54.html/$week');
+    final url = Uri.parse('https://ictis.ru/$index.html/$week');
     final responce = await http.get(url);
     dom.Document html = dom.Document.html(responce.body);
 
@@ -85,7 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
         title: Text(
-          title,
+          '$name, $title',
           style: const TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
         ),
         centerTitle: true,
@@ -101,8 +120,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 2,
+                          name: name,
+                          day: 2,
                           week: week,
+                          index: index,
                         )),
               );
             },
@@ -115,8 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 3,
+                          name: name,
+                          day: 3,
                           week: week,
+                          index: index,
                         )),
               );
             },
@@ -129,8 +152,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 4,
+                          name: name,
+                          day: 4,
                           week: week,
+                          index: index,
                         )),
               );
             },
@@ -143,8 +168,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 5,
+                          name: name,
+                          day: 5,
                           week: week,
+                          index: index,
                         )),
               );
             },
@@ -157,8 +184,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 6,
+                          name: name,
+                          day: 6,
                           week: week,
+                          index: index,
                         )),
               );
             },
@@ -171,8 +200,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 MaterialPageRoute(
                     builder: (context) => CurrentDay(
                           title: title,
-                          index: 7,
+                          name: name,
+                          day: 7,
                           week: week,
+                          index: index,
                         )),
               );
             },

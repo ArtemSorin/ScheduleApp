@@ -7,12 +7,16 @@ class CurrentDay extends StatelessWidget {
   const CurrentDay(
       {super.key,
       required this.title,
+      required this.day,
+      required this.week,
       required this.index,
-      required this.week});
+      required this.name});
 
   final String title;
-  final int index;
+  final String name;
+  final int day;
   final int week;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +24,10 @@ class CurrentDay extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: MyHomePage(
         title: title,
-        index: index,
+        day: day,
         week: week,
+        index: index,
+        name: name,
       ),
     );
   }
@@ -31,24 +37,32 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage(
       {super.key,
       required this.title,
+      required this.day,
+      required this.week,
       required this.index,
-      required this.week});
+      required this.name});
 
   final String title;
-  final int index;
+  final String name;
+  final int day;
   final int week;
+  final int index;
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _MyHomePageState(title, index, week);
+  State<MyHomePage> createState() =>
+      _MyHomePageState(title, day, week, index, name);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(this.title, this.index, this.week);
+  _MyHomePageState(this.title, this.day, this.week, this.index, this.name);
 
   final String title;
-  final int index;
+  final String name;
+  final int day;
   final int week;
+  final int index;
+
   List<Subjects> timetablelist = [];
 
   void initstate() {
@@ -58,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future getWebsiteData() async {
-    final url = Uri.parse('https://ictis.ru/54.html/$week');
+    final url = Uri.parse('https://ictis.ru/$index.html/$week');
     final responce = await http.get(url);
     dom.Document html = dom.Document.html(responce.body);
 
@@ -76,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     final titlesSubject = html
         .querySelectorAll(
-            'body > div.container > div > table > tbody > tr.day-$index > td')
+            'body > div.container > div > table > tbody > tr.day-$day > td')
         .map((e) => e.innerHtml.trim())
         .toList();
 
@@ -85,11 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       timetablelist = List.generate(
           titlesNumber.length,
-          (index) => Subjects(
-              number: titlesNumber[index],
-              time: titlesTime[index],
+          (day) => Subjects(
+              number: titlesNumber[day],
+              time: titlesTime[day],
               name: '',
-              subject: titlesSubject[index]));
+              subject: titlesSubject[day]));
     });
   }
 
@@ -115,7 +129,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
         title: Text(
-          title,
+          '$name, $title',
           style: const TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
         ),
         centerTitle: true,
@@ -123,8 +137,8 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
         itemCount: timetablelist.length,
-        itemBuilder: (context, index) {
-          final timetable = timetablelist[index];
+        itemBuilder: (context, day) {
+          final timetable = timetablelist[day];
           return ListTile(
             leading: Text(
               timetable.time == 'Время' ? 'Время           ' : timetable.time,
