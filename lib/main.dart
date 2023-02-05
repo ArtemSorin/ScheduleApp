@@ -257,6 +257,73 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
           ),
+          const ListTile(
+            title: Text(
+              '4 курс',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо4-7'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 130,
+                            name: 'КТбо4-7',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо4-8'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 131,
+                            name: 'КТбо4-8',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо4-9'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 132,
+                            name: 'КТбо4-9',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо4-10'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 133,
+                            name: 'КТбо4-10',
+                          )),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
