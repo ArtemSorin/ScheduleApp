@@ -56,161 +56,206 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: <Widget>[
-          ListTile(
-            title: const Text('КТбо1-7'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 7,
-                          name: 'КТбо1-7',
-                        )),
-              );
-            },
+          const ListTile(
+            title: Text(
+              '1 курс',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо1-8'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 8,
-                          name: 'КТбо1-8',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо1-7'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 7,
+                            name: 'КТбо1-7',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо1-9'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 9,
-                          name: 'КТбо1-9',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо1-8'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 8,
+                            name: 'КТбо1-8',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо1-10'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 10,
-                          name: 'КТбо1-10',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо1-9'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 9,
+                            name: 'КТбо1-9',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо2-7'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 53,
-                          name: 'КТбо2-7',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо1-10'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 10,
+                            name: 'КТбо1-10',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо2-8'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 54,
-                          name: 'КТбо2-8',
-                        )),
-              );
-            },
+          const ListTile(
+            title: Text(
+              '2 курс',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо2-9'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 55,
-                          name: 'КТбо2-9',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо2-7'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 53,
+                            name: 'КТбо2-7',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо2-10'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 56,
-                          name: 'КТбо2-10',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо2-8'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 54,
+                            name: 'КТбо2-8',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо3-7'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 100,
-                          name: 'КТбо3-7',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо2-9'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 55,
+                            name: 'КТбо2-9',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо3-8'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 101,
-                          name: 'КТбо3-8',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо2-10'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 56,
+                            name: 'КТбо2-10',
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо3-9'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 102,
-                          name: 'КТбо3-9',
-                        )),
-              );
-            },
+          const ListTile(
+            title: Text(
+              '3 курс',
+              style:
+                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            ),
           ),
-          ListTile(
-            title: const Text('КТбо3-10'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ListWeeks(
-                          index: 103,
-                          name: 'КТбо3-10',
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('КТбо3-7'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 100,
+                            name: 'КТбо3-7',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо3-8'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 101,
+                            name: 'КТбо3-8',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо3-9'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 102,
+                            name: 'КТбо3-9',
+                          )),
+                );
+              },
+            ),
+          ),
+          Card(
+            child: ListTile(
+              title: const Text('КТбо3-10'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const ListWeeks(
+                            index: 103,
+                            name: 'КТбо3-10',
+                          )),
+                );
+              },
+            ),
           ),
         ],
       ),

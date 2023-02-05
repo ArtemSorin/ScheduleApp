@@ -49,8 +49,8 @@ class MyHomePage extends StatefulWidget {
   final int index;
 
   @override
-  // ignore: no_logic_in_create_state
   State<MyHomePage> createState() =>
+      // ignore: no_logic_in_create_state
       _MyHomePageState(title, day, week, index, name);
 }
 
@@ -139,9 +139,10 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: timetablelist.length,
         itemBuilder: (context, day) {
           final timetable = timetablelist[day];
-          return ListTile(
+          return Card(
+              child: ListTile(
             leading: Text(
-              timetable.time == 'Время' ? 'Время           ' : timetable.time,
+              timetable.time == 'Время' ? '⏰' : timetable.time,
               style: TextStyle(
                   color: timetable.time == 'Время'
                       ? Colors.black
@@ -152,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
               timetable.subject.replaceAll(str, '').trim(),
               style: const TextStyle(color: Colors.black),
             ),
-          );
+          ));
         },
       ),
     );

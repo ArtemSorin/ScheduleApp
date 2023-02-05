@@ -112,101 +112,113 @@ class _MyHomePageState extends State<MyHomePage> {
       body: ListView(
         padding: const EdgeInsets.all(8),
         children: <Widget>[
-          ListTile(
-            title: const Text('Понедельник'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 2,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Понедельник'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 2,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('Вторник'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 3,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Вторник'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 3,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('Среда'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 4,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Среда'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 4,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('Четверг'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 5,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Четверг'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 5,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('Пятница'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 6,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Пятница'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 6,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
-          ListTile(
-            title: const Text('Суббота'),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                          name: name,
-                          day: 7,
-                          week: week,
-                          index: index,
-                        )),
-              );
-            },
+          Card(
+            child: ListTile(
+              title: const Text('Суббота'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentDay(
+                            title: title,
+                            name: name,
+                            day: 7,
+                            week: week,
+                            index: index,
+                          )),
+                );
+              },
+            ),
           ),
         ],
       ),

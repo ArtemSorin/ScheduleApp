@@ -95,22 +95,24 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: timetablelist.length,
         itemBuilder: (context, i) {
           final timetable = timetablelist[i];
-          return ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentWeek(
-                          title: '${timetable.number} неделя',
-                          week: i + 1,
-                          index: index,
-                          name: name,
-                        )),
-              );
-            },
-            title: Text(
-              '${timetable.number} неделя',
-              style: const TextStyle(color: Colors.black),
+          return Card(
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CurrentWeek(
+                            title: '${timetable.number} неделя',
+                            week: i + 1,
+                            index: index,
+                            name: name,
+                          )),
+                );
+              },
+              title: Text(
+                '${timetable.number} неделя',
+                style: const TextStyle(color: Colors.black),
+              ),
             ),
           );
         },
