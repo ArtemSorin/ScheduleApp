@@ -99,11 +99,13 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {
       timetablelist = List.generate(
           titlesNumber.length,
-          (day) => Subjects(
-              number: titlesNumber[day],
-              time: titlesTime[day],
+          (index) => Subjects(
+              number: titlesNumber[index],
+              time: titlesTime[index],
               name: '',
-              subject: titlesSubject[day]));
+              // ignore: prefer_if_null_operators
+              subject:
+                  titlesSubject[index].isNotEmpty ? titlesSubject[day] : ' '));
     });
   }
 
