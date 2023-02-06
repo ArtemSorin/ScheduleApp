@@ -1,16 +1,7 @@
-# timetable
+# Schedule for MOP EVM 
 
-A new Flutter project.
+Schedule Viewer App for Students
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![Group 2](https://user-images.githubusercontent.com/95878097/216997472-d7cf4e2b-c910-41f8-b03b-d5de14bf5534.png)
