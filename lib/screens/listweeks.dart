@@ -5,15 +5,10 @@ import 'package:timetable/models/timetable.dart';
 import 'package:timetable/screens/currentweek.dart';
 
 class ListWeeks extends StatelessWidget {
-  const ListWeeks(
-      {super.key,
-      required this.index,
-      required this.name,
-      required this.colors});
+  const ListWeeks({super.key, required this.index, required this.name});
 
   final int index;
   final String name;
-  final List<String?> colors;
 
   @override
   Widget build(BuildContext context) {
@@ -22,34 +17,27 @@ class ListWeeks extends StatelessWidget {
       home: MyHomePage(
         index: index,
         name: name,
-        colors: colors,
       ),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage(
-      {super.key,
-      required this.index,
-      required this.name,
-      required this.colors});
+  const MyHomePage({super.key, required this.index, required this.name});
 
   final int index;
   final String name;
-  final List<String?> colors;
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _MyHomePageState(index, name, colors);
+  State<MyHomePage> createState() => _MyHomePageState(index, name);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(this.index, this.name, this.colors);
+  _MyHomePageState(this.index, this.name);
 
   final int index;
   final String name;
-  final List<String?> colors;
 
   List<TimeTable> timetablelist = [];
 
@@ -80,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     getWebsiteData();
-    print(colors);
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -124,10 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               title: Text(
                 '${timetable.number} неделя',
-                style: TextStyle(
-                    color: colors[i] == 'color:red'
-                        ? const Color.fromARGB(255, 91, 117, 240)
-                        : Colors.black),
+                style: const TextStyle(color: Colors.black),
               ),
             ),
           );

@@ -225,30 +225,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-/*
-
-ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: timetablelist.length,
-        itemBuilder: (context, index) {
-          final timetable = timetablelist[index];
-          return ListTile(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => CurrentDay(
-                          title: title,
-                        )),
-              );
-            },
-            leading: Text(
-              timetable.number,
-              style: const TextStyle(color: Colors.black),
-            ),
-          );
-        },
-      ),
-
- */

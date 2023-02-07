@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/dom.dart' as dom;
 import 'package:timetable/screens/listweeks.dart';
 
 void main() {
@@ -27,32 +25,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List<String?> weekcolors = [];
-
   void initstate() {
     super.initState();
   }
 
-  Future getWebsiteData() async {
-    final url = Uri.parse('https://ictis.ru/8.html');
-    final responce = await http.get(url);
-    dom.Document html = dom.Document.html(responce.body);
-
-    final imgColors = html
-        .querySelectorAll('body > div.container > a')
-        .map((element) => element.attributes['style'])
-        .toList();
-
-    if (!mounted) return;
-
-    setState(() {
-      weekcolors = imgColors;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
-    getWebsiteData();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -92,10 +70,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 7,
                             name: 'КТбо1-7',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -108,10 +85,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 8,
                             name: 'КТбо1-8',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -124,10 +100,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 9,
                             name: 'КТбо1-9',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -140,10 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 10,
                             name: 'КТбо1-10',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -163,10 +137,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 53,
                             name: 'КТбо2-7',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -179,10 +152,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 54,
                             name: 'КТбо2-8',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -195,10 +167,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 55,
                             name: 'КТбо2-9',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -211,10 +182,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 56,
                             name: 'КТбо2-10',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -234,10 +204,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 100,
                             name: 'КТбо3-7',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -250,10 +219,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 101,
                             name: 'КТбо3-8',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -266,10 +234,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 102,
                             name: 'КТбо3-9',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -282,10 +249,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 103,
                             name: 'КТбо3-10',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -305,10 +271,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 130,
                             name: 'КТбо4-7',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -321,10 +286,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 131,
                             name: 'КТбо4-8',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -337,10 +301,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 132,
                             name: 'КТбо4-9',
-                            colors: weekcolors,
                           )),
                 );
               },
@@ -353,10 +316,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ListWeeks(
+                      builder: (context) => const ListWeeks(
                             index: 133,
                             name: 'КТбо4-10',
-                            colors: weekcolors,
                           )),
                 );
               },
