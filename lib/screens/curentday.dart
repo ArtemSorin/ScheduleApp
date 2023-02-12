@@ -64,6 +64,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final int index;
 
   List<Subjects> timetablelist = [];
+  List<Subjects> timetablelistcurrent = [];
 
   void initstate() {
     super.initState();
@@ -89,8 +90,19 @@ class _MyHomePageState extends State<MyHomePage> {
         .toList();
 
     final titlesSubject = html
+            .querySelectorAll(
+                'body > div.container > div > table > tbody > tr.day-$day > td')
+            .map((e) => e.innerHtml.trim())
+            .toList() +
+        html
+            .querySelectorAll(
+                'body > div.container > div > table > tbody > tr.current-day > td')
+            .map((e) => e.innerHtml.trim())
+            .toList();
+
+    final titlesSubjectCurrent = html
         .querySelectorAll(
-            'body > div.container > div > table > tbody > tr.day-$day > td')
+            'body > div.container > div > table > tbody > tr.current-day > td')
         .map((e) => e.innerHtml.trim())
         .toList();
 
@@ -103,7 +115,16 @@ class _MyHomePageState extends State<MyHomePage> {
               number: titlesNumber[day],
               time: titlesTime[day],
               name: '',
-              subject: titlesSubject[day]));
+              subject: titlesSubject.isNotEmpty ? titlesSubject[day] : ''));
+      timetablelistcurrent = List.generate(
+          titlesNumber.length,
+          (day) => Subjects(
+              number: titlesNumber[day],
+              time: titlesTime[day],
+              name: '',
+              subject: titlesSubjectCurrent.isNotEmpty
+                  ? titlesSubjectCurrent[day]
+                  : ''));
     });
   }
 
@@ -123,23 +144,35 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {showDialog<String>(
-              context: context,
-              builder: (BuildContext context) => AlertDialog(
-                title: const Text('О приложении'),
-                content: const Text('Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                    'Для удобства расписание текущей недели выделено цветом.'),
-                actions: <Widget>[
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text('Cancel', style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),),
-                  ),
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text('OK', style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),),
-                  ),
-                ],
-              ),);},
+            onPressed: () {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  title: const Text('О приложении'),
+                  content: const Text(
+                      'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
+                      'Для удобства расписание текущей недели выделено цветом.'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'Cancel'),
+                      child: const Text(
+                        'Cancel',
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => Navigator.pop(context, 'OK'),
+                      child: const Text(
+                        'OK',
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
             icon: const Icon(Icons.question_mark),
             color: const Color.fromARGB(255, 91, 117, 240),
           )
