@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:timetable/models/data.dart';
 import 'package:timetable/screens/listweeks.dart';
 
 void main() {
@@ -29,323 +30,366 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(1);
+
   void initstate() {
     super.initState();
+    futureTable = fetchDataWithoutParams(1);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: const Color.fromARGB(255, 91, 117, 240),
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-              title: const Text('О приложении'),
-              content: const Text('Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                  'Для удобства расписание текущей недели выделено цветом.'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: const Text('Cancel', style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pop(context, 'OK'),
-                  child: const Text('OK', style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),),
-                ),
-              ],
-            ),);},
-            icon: const Icon(Icons.question_mark),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.white,
+          leading: IconButton(
             color: const Color.fromARGB(255, 91, 117, 240),
-          )
-        ],
-        title: const Text(
-          'Главная',
-          style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+            icon: const Icon(Icons.menu),
+            onPressed: () {},
+          ),
+          actions: [
+            IconButton(
+              onPressed: () {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    title: const Text('О приложении'),
+                    content: const Text(
+                        'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
+                        'Для удобства расписание текущей недели выделено цветом.'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'Cancel'),
+                        child: const Text(
+                          'Cancel',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 91, 117, 240)),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, 'OK'),
+                        child: const Text(
+                          'OK',
+                          style: TextStyle(
+                              color: Color.fromARGB(255, 91, 117, 240)),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              icon: const Icon(Icons.question_mark),
+              color: const Color.fromARGB(255, 91, 117, 240),
+            )
+          ],
+          title: const Text(
+            'Главная',
+            style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+          ),
+          centerTitle: true,
         ),
-        centerTitle: true,
-      ),
-      body: ListView(
-        padding: const EdgeInsets.all(8),
-        children: <Widget>[
-          const ListTile(
-            title: Text(
-              '1 курс',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо1-7'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 7,
-                            name: 'КТбо1-7',
-                          )),
+        body: FutureBuilder<Map<String, dynamic>>(
+            future: futureTable,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return ListView(
+                  padding: const EdgeInsets.all(8),
+                  children: <Widget>[
+                    const ListTile(
+                      title: Text(
+                        '1 курс',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо1-7'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо1-7',
+                                      group: 7,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо1-8'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо1-8',
+                                      group: 8,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо1-9'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо1-9',
+                                      group: 9,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо1-10'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо1-10',
+                                      group: 10,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    const ListTile(
+                      title: Text(
+                        '2 курс',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо2-7'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо2-7',
+                                      group: 53,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо2-8'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо2-8',
+                                      group: 54,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо2-9'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо2-9',
+                                      group: 55,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо2-10'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо2-10',
+                                      group: 56,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    const ListTile(
+                      title: Text(
+                        '3 курс',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо3-7'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо3-7',
+                                      group: 100,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо3-8'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо3-8',
+                                      group: 101,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо3-9'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо3-9',
+                                      group: 102,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо3-10'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо3-10',
+                                      group: 103,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    const ListTile(
+                      title: Text(
+                        '4 курс',
+                        style: TextStyle(
+                            color: Colors.black, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо4-7'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо4-7',
+                                      group: 130,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо4-8'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо4-8',
+                                      group: 131,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо4-9'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      group: 132,
+                                      weeks: snapshot.data!['weeks'],
+                                      groupstr: 'КТбо4-9',
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                    Card(
+                      child: ListTile(
+                        title: const Text('КТбо4-10'),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListWeeks(
+                                      groupstr: 'КТбо4-10',
+                                      group: 133,
+                                      weeks: snapshot.data!['weeks'],
+                                    )),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо1-8'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 8,
-                            name: 'КТбо1-8',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо1-9'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 9,
-                            name: 'КТбо1-9',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо1-10'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 10,
-                            name: 'КТбо1-10',
-                          )),
-                );
-              },
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              '2 курс',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо2-7'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 53,
-                            name: 'КТбо2-7',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо2-8'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 54,
-                            name: 'КТбо2-8',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо2-9'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 55,
-                            name: 'КТбо2-9',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо2-10'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 56,
-                            name: 'КТбо2-10',
-                          )),
-                );
-              },
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              '3 курс',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо3-7'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 100,
-                            name: 'КТбо3-7',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо3-8'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 101,
-                            name: 'КТбо3-8',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо3-9'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 102,
-                            name: 'КТбо3-9',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо3-10'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 103,
-                            name: 'КТбо3-10',
-                          )),
-                );
-              },
-            ),
-          ),
-          const ListTile(
-            title: Text(
-              '4 курс',
-              style:
-                  TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо4-7'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 130,
-                            name: 'КТбо4-7',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо4-8'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 131,
-                            name: 'КТбо4-8',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо4-9'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 132,
-                            name: 'КТбо4-9',
-                          )),
-                );
-              },
-            ),
-          ),
-          Card(
-            child: ListTile(
-              title: const Text('КТбо4-10'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ListWeeks(
-                            index: 133,
-                            name: 'КТбо4-10',
-                          )),
-                );
-              },
-            ),
-          ),
-        ],
-      ),
-    );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              }
+              return const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 91, 117, 240),
+                ),
+              );
+            }));
   }
 }

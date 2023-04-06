@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:html/dom.dart' as dom;
-import 'package:timetable/models/timetable.dart';
+import 'package:timetable/models/data.dart';
 import 'package:timetable/screens/curentday.dart';
 
 class CurrentWeek extends StatelessWidget {
@@ -9,13 +7,15 @@ class CurrentWeek extends StatelessWidget {
       {super.key,
       required this.title,
       required this.week,
-      required this.index,
-      required this.name});
+      required this.group,
+      required this.weeks,
+      required this.groupstr});
 
   final String title;
-  final String name;
+  final List<dynamic> weeks;
   final int week;
-  final int index;
+  final int group;
+  final String groupstr;
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,9 @@ class CurrentWeek extends StatelessWidget {
       body: MyHomePage(
         title: title,
         week: week,
-        index: index,
-        name: name,
+        group: group,
+        weeks: weeks,
+        groupstr: groupstr,
       ),
     );
   }
@@ -35,57 +36,40 @@ class MyHomePage extends StatefulWidget {
       {super.key,
       required this.title,
       required this.week,
-      required this.index,
-      required this.name});
+      required this.group,
+      required this.weeks,
+      required this.groupstr});
 
   final String title;
-  final String name;
+  final List<dynamic> weeks;
   final int week;
-  final int index;
+  final int group;
+  final String groupstr;
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _MyHomePageState(title, week, index, name);
+  State<MyHomePage> createState() =>
+      _MyHomePageState(title, week, group, weeks, groupstr);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(this.title, this.week, this.index, this.name);
+  _MyHomePageState(
+      this.title, this.week, this.group, this.weeks, this.groupstr);
 
   final String title;
-  final String name;
+  final List<dynamic> weeks;
   final int week;
-  final int index;
+  final int group;
+  final String groupstr;
 
-  List<TimeTable> timetablelist = [];
+  List<TableSh> timetablelist = [];
 
   void initstate() {
     super.initState();
-
-    getWebsiteData();
-  }
-
-  Future getWebsiteData() async {
-    final url = Uri.parse('https://ictis.ru/$index.html/$week');
-    final responce = await http.get(url);
-    dom.Document html = dom.Document.html(responce.body);
-
-    final titles = html
-        .querySelectorAll(
-            'body > div.container > div > table > tbody > tr > td')
-        .map((e) => e.innerHtml.trim())
-        .toList();
-
-    if (!mounted) return;
-
-    setState(() {
-      timetablelist = List.generate(
-          titles.length, (index) => TimeTable(number: titles[index]));
-    });
   }
 
   @override
   Widget build(BuildContext context) {
-    getWebsiteData();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -131,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
         title: Text(
-          '$name, $title',
+          '$groupstr, $title',
           style: const TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
         ),
         centerTitle: true,
@@ -148,10 +132,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 2,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
@@ -166,10 +151,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 3,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
@@ -184,10 +170,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 4,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
@@ -202,10 +189,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 5,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
@@ -220,10 +208,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 6,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
@@ -238,10 +227,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   MaterialPageRoute(
                       builder: (context) => CurrentDay(
                             title: title,
-                            name: name,
+                            name: ' ',
                             day: 7,
                             week: week,
-                            index: index,
+                            group: group,
+                            groupstr: groupstr,
                           )),
                 );
               },
