@@ -108,7 +108,6 @@ class _MyHomePageState extends State<MyHomePage> {
             future: futureTable,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                print(snapshot.data!['table']['week']);
                 return ListView.builder(
                     padding: const EdgeInsets.all(12),
                     itemCount: snapshot.data!['weeks']!.length,

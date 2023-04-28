@@ -134,7 +134,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 padding: const EdgeInsets.all(12),
                 itemCount: snapshot.data!['table']['table'][day]!.length,
                 itemBuilder: (context, index) {
-                  print(snapshot.data!['table']['table'][day][index]);
                   return Card(
                       child: ListTile(
                     leading: Text(

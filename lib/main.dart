@@ -1,395 +1,119 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:timetable/models/data.dart';
-import 'package:timetable/screens/listweeks.dart';
+import 'package:timetable/screens/home.dart';
+import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 void main() {
-  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    statusBarColor: Colors.white,
-  ));
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+    return MaterialApp(
+      // debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        canvasColor: const Color.fromARGB(255, 232, 232, 232),
+      ),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  // ignore: library_private_types_in_public_api
+  _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(1);
-
-  void initstate() {
+  final Color navigationBarColor = Colors.white;
+  int selectedIndex = 0;
+  late PageController pageController;
+  @override
+  void initState() {
     super.initState();
-    futureTable = fetchDataWithoutParams(1);
+    pageController = PageController(initialPage: selectedIndex);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-            color: const Color.fromARGB(255, 91, 117, 240),
-            icon: const Icon(Icons.menu),
-            onPressed: () {},
-          ),
-          actions: [
-            IconButton(
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('О приложении'),
-                    content: const Text(
-                        'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                        'Для удобства расписание текущей недели выделено цветом.'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text(
-                          'Cancel',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 91, 117, 240)),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
-                        child: const Text(
-                          'OK',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 91, 117, 240)),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              icon: const Icon(Icons.question_mark),
-              color: const Color.fromARGB(255, 91, 117, 240),
-            )
+    /// [AnnotatedRegion<SystemUiOverlayStyle>] only for android black navigation bar. 3 button navigation control (legacy)
+
+    return AnnotatedRegion<SystemUiOverlayStyle>(
+      value: SystemUiOverlayStyle(
+        systemNavigationBarColor: navigationBarColor,
+        systemNavigationBarIconBrightness: Brightness.dark,
+      ),
+      child: Scaffold(
+        // backgroundColor: Colors.grey,
+        body: PageView(
+          physics: const NeverScrollableScrollPhysics(),
+          controller: pageController,
+          children: <Widget>[
+            Home(),
+            Container(
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.favorite_rounded,
+                size: 56,
+                color: Colors.red[400],
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.email_rounded,
+                size: 56,
+                color: Colors.green[400],
+              ),
+            ),
+            Container(
+              alignment: Alignment.center,
+              child: Icon(
+                Icons.folder_rounded,
+                size: 56,
+                color: Colors.blue[400],
+              ),
+            ),
           ],
-          title: const Text(
-            'Главная',
-            style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
-          ),
-          centerTitle: true,
         ),
-        body: FutureBuilder<Map<String, dynamic>>(
-            future: futureTable,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return ListView(
-                  padding: const EdgeInsets.all(8),
-                  children: <Widget>[
-                    const ListTile(
-                      title: Text(
-                        '1 курс',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо1-7'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо1-7',
-                                      group: 7,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо1-8'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо1-8',
-                                      group: 8,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо1-9'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо1-9',
-                                      group: 9,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо1-10'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо1-10',
-                                      group: 10,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    const ListTile(
-                      title: Text(
-                        '2 курс',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо2-7'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо2-7',
-                                      group: 53,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо2-8'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо2-8',
-                                      group: 54,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо2-9'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо2-9',
-                                      group: 55,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо2-10'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо2-10',
-                                      group: 56,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    const ListTile(
-                      title: Text(
-                        '3 курс',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо3-7'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо3-7',
-                                      group: 100,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо3-8'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо3-8',
-                                      group: 101,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо3-9'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо3-9',
-                                      group: 102,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо3-10'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо3-10',
-                                      group: 103,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    const ListTile(
-                      title: Text(
-                        '4 курс',
-                        style: TextStyle(
-                            color: Colors.black, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо4-7'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо4-7',
-                                      group: 130,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо4-8'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо4-8',
-                                      group: 131,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо4-9'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      group: 132,
-                                      weeks: snapshot.data!['weeks'],
-                                      groupstr: 'КТбо4-9',
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                    Card(
-                      child: ListTile(
-                        title: const Text('КТбо4-10'),
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ListWeeks(
-                                      groupstr: 'КТбо4-10',
-                                      group: 133,
-                                      weeks: snapshot.data!['weeks'],
-                                    )),
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                );
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              }
-              return const Center(
-                child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 91, 117, 240),
-                ),
-              );
-            }));
+        bottomNavigationBar: WaterDropNavBar(
+          backgroundColor: navigationBarColor,
+          onItemSelected: (int index) {
+            setState(() {
+              selectedIndex = index;
+            });
+            pageController.animateToPage(selectedIndex,
+                duration: const Duration(milliseconds: 400),
+                curve: Curves.easeOutQuad);
+          },
+          selectedIndex: selectedIndex,
+          barItems: <BarItem>[
+            BarItem(
+              filledIcon: Icons.bookmark_rounded,
+              outlinedIcon: Icons.bookmark_border_rounded,
+            ),
+            BarItem(
+                filledIcon: Icons.favorite_rounded,
+                outlinedIcon: Icons.favorite_border_rounded),
+            BarItem(
+              filledIcon: Icons.email_rounded,
+              outlinedIcon: Icons.email_outlined,
+            ),
+            BarItem(
+              filledIcon: Icons.folder_rounded,
+              outlinedIcon: Icons.folder_outlined,
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
