@@ -48,6 +48,7 @@ class MyHomePage extends StatefulWidget {
 
   @override
   State<MyHomePage> createState() =>
+      // ignore: no_logic_in_create_state
       _MyHomePageState(title, week, group, weeks, groupstr);
 }
 
