@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/models/data.dart';
-import 'package:timetable/screens/curentday.dart';
+import 'package:timetable/data/data.dart';
+import 'package:timetable/models/curentday.dart';
+
+import '../data/lists.dart';
 
 class CurrentWeek extends StatelessWidget {
   const CurrentWeek(
@@ -70,15 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> days = [
-      'Понедельник',
-      'Вторник',
-      'Среда',
-      'Четверг',
-      'Пятница',
-      'Суббота'
-    ];
-    List<int> numdays = [2, 3, 4, 5, 6, 7];
     return Scaffold(
       appBar: AppBar(
         elevation: 0,

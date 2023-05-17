@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/models/data.dart';
-import 'package:timetable/screens/listweeks.dart';
+import 'package:timetable/data/data.dart';
+import 'package:timetable/models/listweeks.dart';
+
+import '../data/lists.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -31,50 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    List<String> groups = [
-      '1 курс',
-      'КТбо1-7',
-      'КТбо1-8',
-      'КТбо1-9',
-      'КТбо1-10',
-      '2 курс',
-      'КТбо2-7',
-      'КТбо2-8',
-      'КТбо2-9',
-      'КТбо2-10',
-      '3 курс',
-      'КТбо3-7',
-      'КТбо3-8',
-      'КТбо3-9',
-      'КТбо3-10',
-      '4 курс',
-      'КТбо4-7',
-      'КТбо4-8',
-      'КТбо4-9',
-      'КТбо4-10',
-    ];
-    List<int> numgroups = [
-      0,
-      7,
-      8,
-      9,
-      10,
-      0,
-      53,
-      54,
-      55,
-      56,
-      0,
-      100,
-      101,
-      102,
-      103,
-      0,
-      130,
-      131,
-      132,
-      133
-    ];
     return Scaffold(
         appBar: AppBar(
           elevation: 0,
