@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:timetable/screens/home.dart';
+import 'package:timetable/screens/notes.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 void main() {
@@ -57,14 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
           controller: pageController,
           children: <Widget>[
             const Home(),
-            Container(
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.favorite_rounded,
-                size: 56,
-                color: Colors.red[400],
-              ),
-            ),
+            const Notes(),
             Container(
               alignment: Alignment.center,
               child: Icon(
@@ -96,12 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
           selectedIndex: selectedIndex,
           barItems: <BarItem>[
             BarItem(
-              filledIcon: Icons.bookmark_rounded,
-              outlinedIcon: Icons.bookmark_border_rounded,
+              filledIcon: Icons.calendar_month_rounded,
+              outlinedIcon: Icons.calendar_month_outlined,
             ),
-            BarItem(
-                filledIcon: Icons.favorite_rounded,
-                outlinedIcon: Icons.favorite_border_rounded),
+            BarItem(filledIcon: Icons.note, outlinedIcon: Icons.note_outlined),
             BarItem(
               filledIcon: Icons.email_rounded,
               outlinedIcon: Icons.email_outlined,

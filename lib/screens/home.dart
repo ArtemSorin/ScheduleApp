@@ -78,7 +78,7 @@ class _MyHomePageState extends State<MyHomePage> {
             )
           ],
           title: const Text(
-            'Главная',
+            'Расписание',
             style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
           ),
           centerTitle: true,
