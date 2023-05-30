@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/data.dart';
+import 'package:timetable/data/shedule.dart';
 
 class CurrentDay extends StatelessWidget {
   const CurrentDay(

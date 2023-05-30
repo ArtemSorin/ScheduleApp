@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/data.dart';
+import 'package:timetable/data/shedule.dart';
 import 'package:timetable/models/curentday.dart';
 
 import '../data/lists.dart';
