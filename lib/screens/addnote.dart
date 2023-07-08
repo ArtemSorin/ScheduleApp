@@ -7,8 +7,8 @@ class AddNote extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final myControllerText = TextEditingController();
-    final myControllerDescription = TextEditingController();
+    final myControllerTitle = TextEditingController();
+    final myControllerContent = TextEditingController();
 
     return Scaffold(
       appBar: const MyAppBar(str: 'Создать заметку'),
@@ -16,42 +16,44 @@ class AddNote extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            padding: const EdgeInsets.all(12),
             child: TextFormField(
+              maxLines: null,
               decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Текст',
+                border: InputBorder.none,
+                hintText: 'Название',
+                contentPadding: EdgeInsets.all(10.0),
               ),
-              controller: myControllerDescription,
+              controller: myControllerTitle,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+            padding: const EdgeInsets.all(12),
             child: TextFormField(
+              maxLines: null,
               decoration: const InputDecoration(
-                border: UnderlineInputBorder(),
-                labelText: 'Описание',
+                border: InputBorder.none,
+                hintText: 'Описание',
+                contentPadding: EdgeInsets.all(10.0),
               ),
-              controller: myControllerText,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: ElevatedButton(
-              onPressed: () async {
-                await NoteDatabase.instance.addNewNote(
-                  title: myControllerDescription.text,
-                  content: myControllerText.text,
-                  timestamp: DateTime.now().toString(),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color.fromARGB(255, 91, 117, 240),
-              ),
-              child: const Text('Добавить'),
+              controller: myControllerContent,
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add',
+        onPressed: () async {
+          await NoteDatabase.instance.addNewNote(
+                  title: myControllerTitle.text,
+                  content: myControllerContent.text,
+                  timestamp: DateTime.now().toString(),
+                );
+                // ignore: use_build_context_synchronously
+                Navigator.pop(context);
+        },
+        backgroundColor: const Color.fromARGB(255, 91, 117, 240),
+        child: const Icon(Icons.add),
       ),
     );
   }

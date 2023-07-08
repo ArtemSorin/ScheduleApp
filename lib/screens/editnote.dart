@@ -15,8 +15,11 @@ class EditNote extends StatelessWidget {
   final String content;
   @override
   Widget build(BuildContext context) {
-    final myControllerText = TextEditingController();
-    final myControllerDescription = TextEditingController();
+    final myControllerTitle = TextEditingController();
+    final myControllerContent = TextEditingController();
+
+    myControllerTitle.text = title;
+    myControllerContent.text = content;
 
     return Scaffold(
       appBar: const MyAppBar(str: 'Редактировать заметку'),
@@ -26,61 +29,43 @@ class EditNote extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
-              decoration: InputDecoration(
-                border: const UnderlineInputBorder(),
-                labelText: title,
+              maxLines: null,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Название',
+                contentPadding: EdgeInsets.all(10.0),
               ),
-              controller: myControllerDescription,
+              controller: myControllerTitle,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
             child: TextFormField(
-              decoration: InputDecoration(
-                border: const UnderlineInputBorder(),
-                labelText: content,
+              maxLines: null,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                hintText: 'Описание',
+                contentPadding: EdgeInsets.all(10.0),
               ),
-              controller: myControllerText,
+              controller: myControllerContent,
             ),
           ),
-          Row(
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await NoteDatabase.instance.updateNote(
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add',
+        onPressed: () async {
+         await NoteDatabase.instance.updateNote(
                       id: id,
-                      title: myControllerDescription.text,
-                      content: myControllerText.text,
+                      title: myControllerTitle.text,
+                      content: myControllerContent.text,
                       timestamp: DateTime.now().toString(),
                     );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 91, 117, 240),
-                  ),
-                  child: const Text('Редактировать'),
-                ),
-              ),
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-                child: ElevatedButton(
-                  onPressed: () async {
-                    await NoteDatabase.instance.deleteNote(
-                      id: id,
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color.fromARGB(255, 91, 117, 240),
-                  ),
-                  child: const Text('Удалить'),
-                ),
-              ),
-            ],
-          ),
-        ],
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
+        },
+        backgroundColor: const Color.fromARGB(255, 91, 117, 240),
+        child: const Icon(Icons.create),
       ),
     );
   }
