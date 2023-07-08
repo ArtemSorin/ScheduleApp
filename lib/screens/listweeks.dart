@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timetable/data/shedule.dart';
-import 'package:timetable/models/currentweek.dart';
+import 'package:timetable/models/appbar.dart';
+import 'package:timetable/screens/currentweek.dart';
 
 class ListWeeks extends StatelessWidget {
   const ListWeeks(
@@ -56,54 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(group);
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.white,
-          leading: IconButton(
-              color: const Color.fromARGB(255, 91, 117, 240),
-              icon: const Icon(Icons.menu),
-              onPressed: () {}),
-          actions: [
-            IconButton(
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    title: const Text('О приложении'),
-                    content: const Text(
-                        'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                        'Для удобства расписание текущей недели выделено цветом.'),
-                    actions: <Widget>[
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'Cancel'),
-                        child: const Text(
-                          'Cancel',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 91, 117, 240)),
-                        ),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, 'OK'),
-                        child: const Text(
-                          'OK',
-                          style: TextStyle(
-                              color: Color.fromARGB(255, 91, 117, 240)),
-                        ),
-                      ),
-                    ],
-                  ),
-                );
-              },
-              icon: const Icon(Icons.question_mark),
-              color: const Color.fromARGB(255, 91, 117, 240),
-            )
-          ],
-          title: Text(
-            groupstr,
-            style: const TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
-          ),
-          centerTitle: true,
-        ),
+        appBar: MyAppBar(str: groupstr),
         body: FutureBuilder<Map<String, dynamic>>(
             future: futureTable,
             builder: (context, snapshot) {

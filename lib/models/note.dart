@@ -35,7 +35,7 @@ class Note {
   }
 
   set date(String newDate) {
-    this._date = newDate;
+    _date = newDate;
   }
 
   // Convert a Note object into a Map object

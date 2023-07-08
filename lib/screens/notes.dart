@@ -2,11 +2,12 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:timetable/data/database.dart';
+import 'package:timetable/models/appbar.dart';
 import 'package:timetable/screens/addnote.dart';
 import 'package:timetable/screens/editnote.dart';
 
 class Notes extends StatefulWidget {
-  const Notes({super.key});
+  const Notes({Key? key}) : super(key: key);
 
   @override
   State<Notes> createState() => NotesState();
@@ -18,62 +19,20 @@ class NotesState extends State<Notes> {
   @override
   void initState() {
     super.initState();
-    notes = NoteDatabase.instance.getAllNotes();
+    refreshNotes();
+  }
+
+  Future<void> refreshNotes() async {
+    setState(() {
+      notes = NoteDatabase.instance.getAllNotes();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white70,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          color: const Color.fromARGB(255, 91, 117, 240),
-          icon: const Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showDialog<String>(
-                context: context,
-                builder: (BuildContext context) => AlertDialog(
-                  title: const Text('О приложении'),
-                  content: const Text(
-                      'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                      'Для удобства расписание текущей недели выделено цветом.'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'Cancel'),
-                      child: const Text(
-                        'Cancel',
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
-                      ),
-                    ),
-                    TextButton(
-                      onPressed: () => Navigator.pop(context, 'OK'),
-                      child: const Text(
-                        'OK',
-                        style:
-                            TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
-                      ),
-                    ),
-                  ],
-                ),
-              );
-            },
-            icon: const Icon(Icons.question_mark),
-            color: const Color.fromARGB(255, 91, 117, 240),
-          )
-        ],
-        title: const Text(
-          'Заметки',
-          style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
-        ),
-        centerTitle: true,
-      ),
+      appBar: const MyAppBar(str: 'Заметки'),
       body: FutureBuilder<List<Map<String, dynamic>>>(
         future: notes,
         builder: (context, snapshot) {
@@ -88,11 +47,12 @@ class NotesState extends State<Notes> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => EditNote(
-                                  id: snapshot.data![i]['id'],
-                                  title: snapshot.data![i]['title'],
-                                  content: snapshot.data![i]['content'],
-                                )),
+                          builder: (context) => EditNote(
+                            id: snapshot.data![i]['id'],
+                            title: snapshot.data![i]['title'],
+                            content: snapshot.data![i]['content'],
+                          ),
+                        ),
                       );
                     },
                     title: Text(
@@ -128,9 +88,7 @@ class NotesState extends State<Notes> {
             context,
             MaterialPageRoute(builder: (context) => const AddNote()),
           );
-          setState(() {
-            notes = NoteDatabase.instance.getAllNotes();
-          });
+          refreshNotes();
         },
         backgroundColor: const Color.fromARGB(255, 91, 117, 240),
         child: const Icon(Icons.add),

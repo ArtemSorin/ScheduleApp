@@ -13,14 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        canvasColor: const Color.fromARGB(255, 232, 232, 232),
-      ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
