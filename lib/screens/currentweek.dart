@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/curentday.dart';
+import 'package:timetable/screens/currentday.dart';
 
 import '../data/lists.dart';
 

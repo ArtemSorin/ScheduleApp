@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/shedule.dart';
+import 'package:timetable/data/schedule.dart';
 import 'package:timetable/models/appbar.dart';
 import 'package:timetable/screens/listweeks.dart';
 

@@ -26,8 +26,8 @@ Future<Map<String, dynamic>> fetchData(int group, int week) async {
   }
 }
 
-class Shedule {
-  Shedule({
+class Schedule {
+  Schedule({
     required this.table,
     required this.weeks,
   });
@@ -35,7 +35,7 @@ class Shedule {
   TableSh table;
   List<int> weeks;
 
-  factory Shedule.fromJson(Map<String, dynamic> json) => Shedule(
+  factory Schedule.fromJson(Map<String, dynamic> json) => Schedule(
         table: TableSh.fromJson(json["table"]),
         weeks: List<int>.from(json["weeks"].map((x) => x)),
       );
