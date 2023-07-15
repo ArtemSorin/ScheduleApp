@@ -23,7 +23,7 @@ class CurrentDay extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyHomePage(
+      home: CurrentDayPage(
         title: title,
         day: day,
         week: week,
@@ -35,8 +35,8 @@ class CurrentDay extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage(
+class CurrentDayPage extends StatefulWidget {
+  const CurrentDayPage(
       {super.key,
       required this.title,
       required this.day,
@@ -53,13 +53,13 @@ class MyHomePage extends StatefulWidget {
   final String groupstr;
 
   @override
-  State<MyHomePage> createState() =>
+  State<CurrentDayPage> createState() =>
       // ignore: no_logic_in_create_state
-      _MyHomePageState(title, day, week, group, name, groupstr);
+      _CurrentDayPageState(title, day, week, group, name, groupstr);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(
+class _CurrentDayPageState extends State<CurrentDayPage> {
+  _CurrentDayPageState(
       this.title, this.day, this.week, this.group, this.name, this.groupstr);
 
   final String title;

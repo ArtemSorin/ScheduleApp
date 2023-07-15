@@ -22,7 +22,7 @@ class CurrentWeek extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyHomePage(
+      body: CurrentDayPage(
         title: title,
         week: week,
         group: group,
@@ -33,8 +33,8 @@ class CurrentWeek extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({
+class CurrentDayPage extends StatelessWidget {
+  const CurrentDayPage({
     Key? key,
     required this.title,
     required this.week,

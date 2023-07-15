@@ -17,7 +17,7 @@ class ListWeeks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: MyHomePage(
+      body: ListWeeksPage(
         group: group,
         weeks: weeks,
         groupstr: groupstr,
@@ -26,8 +26,8 @@ class ListWeeks extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage(
+class ListWeeksPage extends StatefulWidget {
+  const ListWeeksPage(
       {super.key,
       required this.group,
       required this.weeks,
@@ -39,11 +39,11 @@ class MyHomePage extends StatefulWidget {
 
   @override
   // ignore: no_logic_in_create_state
-  State<MyHomePage> createState() => _MyHomePageState(group, weeks, groupstr);
+  State<ListWeeksPage> createState() => _ListWeeksPageState(group, weeks, groupstr);
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  _MyHomePageState(this.group, this.weeks, this.groupstr);
+class _ListWeeksPageState extends State<ListWeeksPage> {
+  _ListWeeksPageState(this.group, this.weeks, this.groupstr);
 
   final int group;
   final String groupstr;
