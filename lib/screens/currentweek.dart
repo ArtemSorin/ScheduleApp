@@ -11,13 +11,13 @@ class CurrentWeek extends StatelessWidget {
       required this.week,
       required this.group,
       required this.weeks,
-      required this.groupstr});
+      required this.groupStr});
 
   final String title;
   final List<dynamic> weeks;
   final int week;
   final int group;
-  final String groupstr;
+  final String groupStr;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class CurrentWeek extends StatelessWidget {
         week: week,
         group: group,
         weeks: weeks,
-        groupstr: groupstr,
+        groupStr: groupStr,
       ),
     );
   }
@@ -40,19 +40,19 @@ class CurrentDayPage extends StatelessWidget {
     required this.week,
     required this.group,
     required this.weeks,
-    required this.groupstr,
+    required this.groupStr,
   }) : super(key: key);
 
   final String title;
   final List<dynamic> weeks;
   final int week;
   final int group;
-  final String groupstr;
+  final String groupStr;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(str: '$groupstr, $title'),
+      appBar: MyAppBar(str: '$groupStr, $title'),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
         itemCount: days.length,
@@ -70,7 +70,7 @@ class CurrentDayPage extends StatelessWidget {
                       day: numdays[index],
                       week: week,
                       group: group,
-                      groupstr: groupstr,
+                      groupStr: groupStr,
                     ),
                   ),
                 );

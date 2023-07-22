@@ -61,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ListWeeks(
-                                            groupstr: groups[index],
+                                            groupStr: groups[index],
                                             group: numgroups[index],
                                             weeks: snapshot.data!['weeks'],
                                           )),
@@ -73,13 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               } else if (snapshot.hasError) {
                 return const Center(
-        child: Text(
-          "Расписание ещё не существует",
-          textAlign: TextAlign.center,
-          style: TextStyle(color: Color.fromARGB(255, 91, 117, 240),
-          fontWeight: FontWeight.bold),
-        ),);
-                //Text('${snapshot.error}');
+                  child: Text(
+                    "Расписание ещё не существует",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(color: Color.fromARGB(255, 91, 117, 240),
+                    fontWeight: FontWeight.bold),
+                  ),);
               }
               return const Center(
                 child: CircularProgressIndicator(

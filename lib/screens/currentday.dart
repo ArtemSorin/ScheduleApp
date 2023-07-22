@@ -10,14 +10,14 @@ class CurrentDay extends StatelessWidget {
       required this.week,
       required this.group,
       required this.name,
-      required this.groupstr});
+      required this.groupStr});
 
   final String title;
   final String name;
   final int day;
   final int week;
   final int group;
-  final String groupstr;
+  final String groupStr;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CurrentDay extends StatelessWidget {
         week: week,
         group: group,
         name: name,
-        groupstr: groupstr,
+        groupStr: groupStr,
       ),
     );
   }
@@ -43,31 +43,31 @@ class CurrentDayPage extends StatefulWidget {
       required this.week,
       required this.group,
       required this.name,
-      required this.groupstr});
+      required this.groupStr});
 
   final String title;
   final String name;
   final int day;
   final int week;
   final int group;
-  final String groupstr;
+  final String groupStr;
 
   @override
   State<CurrentDayPage> createState() =>
       // ignore: no_logic_in_create_state
-      _CurrentDayPageState(title, day, week, group, name, groupstr);
+      _CurrentDayPageState(title, day, week, group, name, groupStr);
 }
 
 class _CurrentDayPageState extends State<CurrentDayPage> {
   _CurrentDayPageState(
-      this.title, this.day, this.week, this.group, this.name, this.groupstr);
+      this.title, this.day, this.week, this.group, this.name, this.groupStr);
 
   final String title;
   final String name;
   final int day;
   final int week;
   final int group;
-  final String groupstr;
+  final String groupStr;
 
   void initstate() {
     super.initState();
@@ -81,7 +81,7 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              appBar: MyAppBar(str: '$groupstr, $title'),
+              appBar: MyAppBar(str: '$groupStr, $title'),
               body: ListView.builder(
                 padding: const EdgeInsets.all(12),
                 itemCount: snapshot.data!['table']['table'][day]!.length,

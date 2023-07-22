@@ -8,10 +8,10 @@ class ListWeeks extends StatelessWidget {
       {super.key,
       required this.group,
       required this.weeks,
-      required this.groupstr});
+      required this.groupStr});
 
   final int group;
-  final String groupstr;
+  final String groupStr;
   final List<dynamic> weeks;
 
   @override
@@ -20,7 +20,7 @@ class ListWeeks extends StatelessWidget {
       body: ListWeeksPage(
         group: group,
         weeks: weeks,
-        groupstr: groupstr,
+        groupStr: groupStr,
       ),
     );
   }
@@ -31,22 +31,22 @@ class ListWeeksPage extends StatefulWidget {
       {super.key,
       required this.group,
       required this.weeks,
-      required this.groupstr});
+      required this.groupStr});
 
   final int group;
-  final String groupstr;
+  final String groupStr;
   final List<dynamic> weeks;
 
   @override
   // ignore: no_logic_in_create_state
-  State<ListWeeksPage> createState() => _ListWeeksPageState(group, weeks, groupstr);
+  State<ListWeeksPage> createState() => _ListWeeksPageState(group, weeks, groupStr);
 }
 
 class _ListWeeksPageState extends State<ListWeeksPage> {
-  _ListWeeksPageState(this.group, this.weeks, this.groupstr);
+  _ListWeeksPageState(this.group, this.weeks, this.groupStr);
 
   final int group;
-  final String groupstr;
+  final String groupStr;
   final List<dynamic> weeks;
 
   void initstate() {
@@ -57,7 +57,7 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
   Widget build(BuildContext context) {
     Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(group);
     return Scaffold(
-        appBar: MyAppBar(str: groupstr),
+        appBar: MyAppBar(str: groupStr),
         body: FutureBuilder<Map<String, dynamic>>(
             future: futureTable,
             builder: (context, snapshot) {
@@ -73,7 +73,7 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CurrentWeek(
-                                        groupstr: groupstr,
+                                        groupStr: groupStr,
                                         title:
                                             '${snapshot.data!['weeks'][i]} неделя',
                                         week: i + 1,
