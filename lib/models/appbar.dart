@@ -33,7 +33,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 title: const Text('О приложении'),
                 content: const Text(
                     'Это приложение для просмотра расписания студентов ИКТИБ кафедры МОП ЭВМ. \n\n'
-                    'Для удобства расписание текущей недели выделено цветом.'),
+                    'Для удобства расписание текущей недели и дня выделено цветом.'),
                 actions: <Widget>[
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'Cancel'),
