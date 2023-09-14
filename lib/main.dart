@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:timetable/screens/brs.dart';
 import 'package:timetable/screens/home.dart';
 import 'package:timetable/screens/notes.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
@@ -63,15 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.green[400],
               ),
             ),
-            const BRS(),
-            /*Container(
+            Container(
               alignment: Alignment.center,
               child: Icon(
                 Icons.school_rounded,
                 size: 56,
                 color: Colors.blue[400],
               ),
-            ),*/
+            ),
           ],
         ),
         bottomNavigationBar: WaterDropNavBar(
@@ -90,7 +88,9 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.calendar_month_rounded,
               outlinedIcon: Icons.calendar_month_outlined,
             ),
-            BarItem(filledIcon: Icons.plagiarism_rounded, outlinedIcon: Icons.plagiarism_outlined),
+            BarItem(
+              filledIcon: Icons.task, 
+              outlinedIcon: Icons.task_outlined),
             BarItem(
               filledIcon: Icons.email_rounded,
               outlinedIcon: Icons.email_outlined,
