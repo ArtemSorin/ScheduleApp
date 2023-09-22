@@ -22,8 +22,7 @@ class _NotesState extends State<Notes> {
   @override
   void initState() {
     super.initState();
-    _notesStream =
-        _notesController.stream;
+    _notesStream = _notesController.stream;
     refreshNotes();
   }
 
@@ -34,8 +33,7 @@ class _NotesState extends State<Notes> {
   }
 
   Future<void> refreshNotes() async {
-    _notesController.sink.add(
-        await NoteDatabase.instance.getAllNotes());
+    _notesController.sink.add(await NoteDatabase.instance.getAllNotes());
   }
 
   @override
@@ -68,20 +66,28 @@ class _NotesState extends State<Notes> {
                       });
                     },
                     title: Text(
-                      snapshot.data![i]['title'].length > 20 ? snapshot.data![i]['title'].substring(0, 20) + '...' : snapshot.data![i]['title'],
+                      snapshot.data![i]['title'].length > 20
+                          ? snapshot.data![i]['title'].substring(0, 20) + '...'
+                          : snapshot.data![i]['title'],
                       style: const TextStyle(
                         color: Color.fromARGB(255, 91, 117, 240),
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text(snapshot.data![i]['content'].length > 30 ? snapshot.data![i]['content'].substring(0, 30) + '...' : snapshot.data![i]['content']),
-                    trailing: IconButton(icon: const Icon(
-                      Icons.delete_forever_rounded,
-                      color: Color.fromARGB(255, 91, 117, 240),
-                    ), onPressed: () {
-                      NoteDatabase.instance.deleteNote(id: snapshot.data![i]['id']);
-                      refreshNotes();
-                    },),
+                    subtitle: Text(snapshot.data![i]['content'].length > 30
+                        ? snapshot.data![i]['content'].substring(0, 30) + '...'
+                        : snapshot.data![i]['content']),
+                    trailing: IconButton(
+                      icon: const Icon(
+                        Icons.delete_forever_rounded,
+                        color: Color.fromARGB(255, 91, 117, 240),
+                      ),
+                      onPressed: () {
+                        NoteDatabase.instance
+                            .deleteNote(id: snapshot.data![i]['id']);
+                        refreshNotes();
+                      },
+                    ),
                   ),
                 );
               },

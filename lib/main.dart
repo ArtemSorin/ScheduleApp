@@ -54,14 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Home(),
             const Notes(),
-            Container(
+            /*Container(
               alignment: Alignment.center,
               child: Icon(
                 Icons.email_rounded,
                 size: 56,
                 color: Colors.green[400],
               ),
-            ),
+            ),*/
             Container(
               alignment: Alignment.center,
               child: Icon(
@@ -88,13 +88,11 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.calendar_month_rounded,
               outlinedIcon: Icons.calendar_month_outlined,
             ),
-            BarItem(
-              filledIcon: Icons.task, 
-              outlinedIcon: Icons.task_outlined),
-            BarItem(
+            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
+            /*BarItem(
               filledIcon: Icons.email_rounded,
               outlinedIcon: Icons.email_outlined,
-            ),
+            ),*/
             BarItem(
               filledIcon: Icons.school_rounded,
               outlinedIcon: Icons.school_outlined,
