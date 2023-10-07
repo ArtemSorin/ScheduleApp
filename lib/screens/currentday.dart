@@ -16,7 +16,7 @@ class CurrentDay extends StatelessWidget {
   final String name;
   final int day;
   final int week;
-  final int group;
+  final int? group;
   final String groupStr;
 
   @override
@@ -49,7 +49,7 @@ class CurrentDayPage extends StatefulWidget {
   final String name;
   final int day;
   final int week;
-  final int group;
+  final int? group;
   final String groupStr;
 
   @override
@@ -66,7 +66,7 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
   final String name;
   final int day;
   final int week;
-  final int group;
+  final int? group;
   final String groupStr;
 
   void initstate() {
@@ -75,7 +75,7 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>> futureTable = fetchData(group, week);
+    Future<Map<String, dynamic>> futureTable = fetchData(group!, week);
     return FutureBuilder<Map<String, dynamic>>(
         future: futureTable,
         builder: (context, snapshot) {

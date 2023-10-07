@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timetable/data/schedule.dart';
 import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/listweeks.dart';
+import 'package:timetable/screens/weeks.dart';
 
 import '../data/lists.dart';
 
@@ -53,6 +53,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                   fontWeight: FontWeight.bold),
                             ),
                           )
+                        : numgroups[index] == null
+                        ?  const Card()
                         : Card(
                             child: ListTile(
                               title: Text(groups[index]),

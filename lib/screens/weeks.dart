@@ -10,7 +10,7 @@ class ListWeeks extends StatelessWidget {
       required this.weeks,
       required this.groupStr});
 
-  final int group;
+  final int? group;
   final String groupStr;
   final List<dynamic> weeks;
 
@@ -33,7 +33,7 @@ class ListWeeksPage extends StatefulWidget {
       required this.weeks,
       required this.groupStr});
 
-  final int group;
+  final int? group;
   final String groupStr;
   final List<dynamic> weeks;
 
@@ -45,7 +45,7 @@ class ListWeeksPage extends StatefulWidget {
 class _ListWeeksPageState extends State<ListWeeksPage> {
   _ListWeeksPageState(this.group, this.weeks, this.groupStr);
 
-  final int group;
+  final int? group;
   final String groupStr;
   final List<dynamic> weeks;
 
@@ -55,7 +55,7 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(group);
+    Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(group!);
     return Scaffold(
         appBar: MyAppBar(str: groupStr),
         body: FutureBuilder<Map<String, dynamic>>(

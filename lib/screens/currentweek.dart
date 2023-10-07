@@ -17,7 +17,7 @@ class CurrentWeek extends StatelessWidget {
   final String title;
   final List<dynamic> weeks;
   final int week;
-  final int group;
+  final int? group;
   final String groupStr;
 
   @override
@@ -47,7 +47,7 @@ class CurrentDayPage extends StatelessWidget {
   final String title;
   final List<dynamic> weeks;
   final int week;
-  final int group;
+  final int? group;
   final String groupStr;
 
   @override
