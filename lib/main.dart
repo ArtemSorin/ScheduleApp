@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:timetable/screens/home.dart';
 import 'package:timetable/screens/notes.dart';
+import 'package:timetable/screens/teachers.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 void main() {
@@ -40,7 +41,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    /// [AnnotatedRegion<SystemUiOverlayStyle>] only for android black navigation bar. 3 button navigation control (legacy)
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: navigationBarColor,
@@ -54,14 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Home(),
             const Notes(),
-            /*Container(
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.email_rounded,
-                size: 56,
-                color: Colors.green[400],
-              ),
-            ),*/
+            const Teachers(),
             Container(
               alignment: Alignment.center,
               child: Icon(
@@ -89,10 +82,10 @@ class _MyHomePageState extends State<MyHomePage> {
               outlinedIcon: Icons.calendar_month_outlined,
             ),
             BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
-            /*BarItem(
+            BarItem(
               filledIcon: Icons.email_rounded,
               outlinedIcon: Icons.email_outlined,
-            ),*/
+            ),
             BarItem(
               filledIcon: Icons.school_rounded,
               outlinedIcon: Icons.school_outlined,

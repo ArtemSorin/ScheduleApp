@@ -44,7 +44,10 @@ class _MyHomePageState extends State<MyHomePage> {
                   padding: const EdgeInsets.all(8),
                   itemCount: groups.length,
                   itemBuilder: (context, index) {
-                    return index % 5 == 0
+                    return groups[index] == '1 курс' ||
+                            groups[index] == '2 курс' ||
+                            groups[index] == '3 курс' ||
+                            groups[index] == '4 курс'
                         ? ListTile(
                             title: Text(
                               groups[index],
@@ -54,23 +57,23 @@ class _MyHomePageState extends State<MyHomePage> {
                             ),
                           )
                         : numgroups[index] == null
-                        ?  const Card()
-                        : Card(
-                            child: ListTile(
-                              title: Text(groups[index]),
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ListWeeks(
-                                            groupStr: groups[index],
-                                            group: numgroups[index],
-                                            weeks: snapshot.data!['weeks'],
-                                          )),
-                                );
-                              },
-                            ),
-                          );
+                            ? const Card()
+                            : Card(
+                                child: ListTile(
+                                  title: Text(groups[index]),
+                                  onTap: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => ListWeeks(
+                                                groupStr: groups[index],
+                                                group: numgroups[index],
+                                                weeks: snapshot.data!['weeks'],
+                                              )),
+                                    );
+                                  },
+                                ),
+                              );
                   },
                 );
               } else if (snapshot.hasError) {
@@ -78,9 +81,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     "Расписание ещё не существует",
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Color.fromARGB(255, 91, 117, 240),
-                    fontWeight: FontWeight.bold),
-                  ),);
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 91, 117, 240),
+                        fontWeight: FontWeight.bold),
+                  ),
+                );
               }
               return const Center(
                 child: CircularProgressIndicator(
