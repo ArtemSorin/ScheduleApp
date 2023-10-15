@@ -83,8 +83,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
             BarItem(
-              filledIcon: Icons.email_rounded,
-              outlinedIcon: Icons.email_outlined,
+              filledIcon: Icons.people,
+              outlinedIcon: Icons.people_alt_outlined,
             ),
             BarItem(
               filledIcon: Icons.school_rounded,

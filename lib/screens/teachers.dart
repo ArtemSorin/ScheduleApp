@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
+import 'package:timetable/screens/currentteacher.dart';
 
 import '../models/appbar.dart';
 
@@ -24,7 +25,10 @@ class TeachersPage extends StatefulWidget {
 }
 
 class _TeachersPageState extends State<TeachersPage> {
-  List<String> list = [];
+  List<String> listTitles = [];
+  List<String?> listImages = [];
+  List<String> listPosts = [];
+  List<String> listMails = [];
 
   @override
   void initState() {
@@ -34,19 +38,30 @@ class _TeachersPageState extends State<TeachersPage> {
   }
 
   Future getWebsiteData() async {
-    final url = Uri.parse('https://mopevm.wordpress.com/преподаватели/');
+    final url = Uri.parse('https://sites.google.com/view/mopevm/');
     final responce = await http.get(url);
     dom.Document html = dom.Document.html(responce.body);
 
-    final titles = html
-        .querySelectorAll('#post-28 > div > table > tbody > tr > td > a')
-        .map((e) => e.innerHtml.trim())
-        .toList();
+    final titles =
+        html.querySelectorAll('a').map((e) => e.innerHtml.trim()).toList();
+    final images =
+        html.querySelectorAll('img').map((e) => e.attributes['src']).toList();
+    final posts =
+        html.querySelectorAll('small').map((e) => e.innerHtml.trim()).toList();
+    final mails =
+        html.querySelectorAll('small').map((e) => e.innerHtml.trim()).toList();
 
     if (!mounted) return;
 
     setState(() {
-      list = titles;
+      listTitles = titles.sublist(35, 51);
+      listImages = images.sublist(17, 33);
+      for (int i = 2; i < 34; i += 2) {
+        listPosts.add(posts[i]);
+      }
+      for (int i = 3; i < 35; i += 2) {
+        listMails.add(mails[i]);
+      }
     });
   }
 
@@ -57,29 +72,27 @@ class _TeachersPageState extends State<TeachersPage> {
       appBar: const MyAppBar(str: 'Сотрудники'),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
-        itemCount: list.length,
+        itemCount: listTitles.length,
         itemBuilder: (context, i) {
-          return list[i].contains('@')
-              ? Container()
-              : Card(
-                  child: ListTile(
-                    onTap: () {
-                      /*Navigator.push(
+          return Card(
+            child: ListTile(
+              onTap: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CurrentWeek(
-                            title: '${timetable.number} неделя',
-                            week: i + 1,
-                            index: index,
-                            name: name,
+                      builder: (context) => CurrentTeacher(
+                            title: listTitles[i],
+                            image: listImages[i]!,
+                            post: listPosts[i],
+                            mail: listMails[i],
                           )),
-                );*/
-                    },
-                    title: Text(
-                      list[i],
-                    ),
-                  ),
                 );
+              },
+              title: Text(
+                listTitles[i],
+              ),
+            ),
+          );
         },
       ),
     );
