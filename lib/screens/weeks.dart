@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:timetable/data/schedule.dart';
 import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/currentweek.dart';
+import 'package:timetable/screens/currentday.dart';
 
 class ListWeeks extends StatelessWidget {
   const ListWeeks(
@@ -39,7 +39,8 @@ class ListWeeksPage extends StatefulWidget {
 
   @override
   // ignore: no_logic_in_create_state
-  State<ListWeeksPage> createState() => _ListWeeksPageState(group, weeks, groupStr);
+  State<ListWeeksPage> createState() =>
+      _ListWeeksPageState(group, weeks, groupStr);
 }
 
 class _ListWeeksPageState extends State<ListWeeksPage> {
@@ -72,13 +73,14 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => CurrentWeek(
+                                  builder: (context) => CurrentDay(
                                         groupStr: groupStr,
                                         title:
                                             '${snapshot.data!['weeks'][i]} неделя',
                                         week: i + 1,
                                         group: group,
                                         weeks: weeks,
+                                        day: 2,
                                       )),
                             );
                           },

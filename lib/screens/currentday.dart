@@ -8,16 +8,16 @@ class CurrentDay extends StatelessWidget {
       required this.title,
       required this.day,
       required this.week,
+      required this.weeks,
       required this.group,
-      required this.name,
       required this.groupStr});
 
   final String title;
-  final String name;
   final int day;
   final int week;
   final int? group;
   final String groupStr;
+  final List<dynamic> weeks;
 
   @override
   Widget build(BuildContext context) {
@@ -28,8 +28,8 @@ class CurrentDay extends StatelessWidget {
         day: day,
         week: week,
         group: group,
-        name: name,
         groupStr: groupStr,
+        weeks: weeks,
       ),
     );
   }
@@ -42,28 +42,27 @@ class CurrentDayPage extends StatefulWidget {
       required this.day,
       required this.week,
       required this.group,
-      required this.name,
-      required this.groupStr});
+      required this.groupStr,
+      required this.weeks});
 
   final String title;
-  final String name;
   final int day;
   final int week;
   final int? group;
   final String groupStr;
+  final List<dynamic> weeks;
 
   @override
   State<CurrentDayPage> createState() =>
       // ignore: no_logic_in_create_state
-      _CurrentDayPageState(title, day, week, group, name, groupStr);
+      _CurrentDayPageState(title, day, week, group, groupStr);
 }
 
 class _CurrentDayPageState extends State<CurrentDayPage> {
   _CurrentDayPageState(
-      this.title, this.day, this.week, this.group, this.name, this.groupStr);
+      this.title, this.day, this.week, this.group, this.groupStr);
 
   final String title;
-  final String name;
   late int day;
   final int week;
   final int? group;
@@ -104,12 +103,21 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
                               height: 20,
                               child: ElevatedButton(
                                 style: ButtonStyle(
-                                    backgroundColor: MaterialStateProperty.all(
-                                        Colors.white)),
+                                    backgroundColor: i + 2 == selectedDay
+                                        ? MaterialStateProperty.all(
+                                            const Color.fromARGB(
+                                                255, 91, 117, 240))
+                                        : MaterialStateProperty.all(
+                                            Colors.white)),
                                 child: Text(
                                   snapshot.data!['table']['table'][i + 2][0],
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 91, 117, 240)),
+                                  style: i + 2 == selectedDay
+                                      ? const TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 255, 255, 255))
+                                      : const TextStyle(
+                                          color: Color.fromARGB(
+                                              255, 91, 117, 240)),
                                 ),
                                 onPressed: () {
                                   setState(() {
@@ -167,6 +175,7 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
                               time1InMinutes.compareTo(currentTimeInMinutes);
                           int comparison2 =
                               time2InMinutes.compareTo(currentTimeInMinutes);
+                          print('$currentTime, $time1, $time2');
                           return Card(
                               color: (comparison1 < 0 && comparison2 > 0)
                                   ? const Color.fromARGB(255, 91, 117, 240)
