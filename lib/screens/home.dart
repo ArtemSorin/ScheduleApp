@@ -68,7 +68,6 @@ class _MyHomePageState extends State<MyHomePage> {
                                           builder: (context) => ListWeeks(
                                                 groupStr: groups[index],
                                                 group: numgroups[index],
-                                                weeks: snapshot.data!['weeks'],
                                               )),
                                     );
                                   },

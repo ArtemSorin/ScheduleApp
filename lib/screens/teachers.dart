@@ -60,14 +60,21 @@ class _TeachersPageState extends State<TeachersPage> {
         listPosts.add(posts[i]);
       }
       for (int i = 3; i < 35; i += 2) {
-        listMails.add(mails[i]);
+        int firstSpaceIndex = mails[i].indexOf(' ');
+        int secondSpaceIndex = mails[i].indexOf(' ', firstSpaceIndex + 1);
+        // Если в найден второй пробел, обрезаем строку, иначе оставляем строку без изменений
+        if (secondSpaceIndex != -1) {
+          String newMail = mails[i].substring(0, secondSpaceIndex);
+          listMails.add(newMail);
+        } else {
+          listMails.add(mails[i]);
+        }
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    getWebsiteData();
     return Scaffold(
       appBar: const MyAppBar(str: 'Сотрудники'),
       body: ListView.builder(
@@ -88,9 +95,22 @@ class _TeachersPageState extends State<TeachersPage> {
                           )),
                 );
               },
-              title: Text(
-                listTitles[i],
+              leading: CircleAvatar(
+                radius: 25.0,
+                backgroundImage: NetworkImage(listImages[i]!),
+                backgroundColor: Colors.transparent,
               ),
+              title: SizedBox(
+                width: double.infinity,
+                child: Text(
+                  listTitles[i],
+                  style: const TextStyle(
+                      color: Color.fromARGB(255, 91, 117, 240),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15),
+                ),
+              ),
+              subtitle: Text(listMails[i]),
             ),
           );
         },

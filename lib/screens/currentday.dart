@@ -8,16 +8,16 @@ class CurrentDay extends StatelessWidget {
       required this.title,
       required this.day,
       required this.week,
-      required this.weeks,
       required this.group,
-      required this.groupStr});
+      required this.groupStr,
+      required this.selectedDay});
 
   final String title;
   final int day;
   final int week;
-  final int? group;
+  final int group;
   final String groupStr;
-  final List<dynamic> weeks;
+  final int selectedDay;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class CurrentDay extends StatelessWidget {
         week: week,
         group: group,
         groupStr: groupStr,
-        weeks: weeks,
+        selectedDay: selectedDay,
       ),
     );
   }
@@ -43,32 +43,31 @@ class CurrentDayPage extends StatefulWidget {
       required this.week,
       required this.group,
       required this.groupStr,
-      required this.weeks});
+      required this.selectedDay});
 
   final String title;
   final int day;
   final int week;
   final int? group;
   final String groupStr;
-  final List<dynamic> weeks;
+  final int selectedDay;
 
   @override
   State<CurrentDayPage> createState() =>
       // ignore: no_logic_in_create_state
-      _CurrentDayPageState(title, day, week, group, groupStr);
+      _CurrentDayPageState(title, day, week, group, groupStr, selectedDay);
 }
 
 class _CurrentDayPageState extends State<CurrentDayPage> {
-  _CurrentDayPageState(
-      this.title, this.day, this.week, this.group, this.groupStr);
+  _CurrentDayPageState(this.title, this.day, this.week, this.group,
+      this.groupStr, this.selectedDay);
 
-  final String title;
-  late int day;
-  final int week;
-  final int? group;
-  final String groupStr;
-
-  int selectedDay = 2;
+  String title;
+  int day;
+  int week;
+  int? group;
+  String groupStr;
+  int selectedDay;
 
   late Future<Map<String, dynamic>> futureTable;
 
@@ -175,7 +174,6 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
                               time1InMinutes.compareTo(currentTimeInMinutes);
                           int comparison2 =
                               time2InMinutes.compareTo(currentTimeInMinutes);
-                          print('$currentTime, $time1, $time2');
                           return Card(
                               color: (comparison1 < 0 && comparison2 > 0)
                                   ? const Color.fromARGB(255, 91, 117, 240)

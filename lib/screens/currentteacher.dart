@@ -30,8 +30,8 @@ class CurrentTeacher extends StatelessWidget {
                     child: Row(
                       children: [
                         SizedBox(
-                          height: 130,
-                          width: 130,
+                          height: 100,
+                          width: 100,
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: ClipOval(
@@ -54,7 +54,7 @@ class CurrentTeacher extends StatelessWidget {
                                   style: const TextStyle(
                                       color: Color.fromARGB(255, 91, 117, 240),
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 20),
+                                      fontSize: 17),
                                 ),
                               ),
                               Padding(
@@ -84,11 +84,12 @@ class CurrentTeacher extends StatelessWidget {
                               style: TextStyle(
                                   color: Color.fromARGB(255, 91, 117, 240),
                                   fontWeight: FontWeight.bold,
-                                  fontSize: 20),
+                                  fontSize: 17),
                             ),
                           ),
                           Padding(
-                            padding: const EdgeInsets.all(10),
+                            padding: const EdgeInsets.only(
+                                left: 10, right: 10, bottom: 10),
                             child: Text(mail),
                           )
                         ],

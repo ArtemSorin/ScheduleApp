@@ -4,22 +4,16 @@ import 'package:timetable/models/appbar.dart';
 import 'package:timetable/screens/currentday.dart';
 
 class ListWeeks extends StatelessWidget {
-  const ListWeeks(
-      {super.key,
-      required this.group,
-      required this.weeks,
-      required this.groupStr});
+  const ListWeeks({super.key, required this.group, required this.groupStr});
 
   final int? group;
   final String groupStr;
-  final List<dynamic> weeks;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListWeeksPage(
         group: group,
-        weeks: weeks,
         groupStr: groupStr,
       ),
     );
@@ -27,28 +21,22 @@ class ListWeeks extends StatelessWidget {
 }
 
 class ListWeeksPage extends StatefulWidget {
-  const ListWeeksPage(
-      {super.key,
-      required this.group,
-      required this.weeks,
-      required this.groupStr});
+  const ListWeeksPage({super.key, required this.group, required this.groupStr});
 
   final int? group;
   final String groupStr;
-  final List<dynamic> weeks;
 
   @override
-  // ignore: no_logic_in_create_state
   State<ListWeeksPage> createState() =>
-      _ListWeeksPageState(group, weeks, groupStr);
+      // ignore: no_logic_in_create_state
+      _ListWeeksPageState(group, groupStr);
 }
 
 class _ListWeeksPageState extends State<ListWeeksPage> {
-  _ListWeeksPageState(this.group, this.weeks, this.groupStr);
+  _ListWeeksPageState(this.group, this.groupStr);
 
   final int? group;
   final String groupStr;
-  final List<dynamic> weeks;
 
   void initstate() {
     super.initState();
@@ -78,9 +66,9 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                                         title:
                                             '${snapshot.data!['weeks'][i]} неделя',
                                         week: i + 1,
-                                        group: group,
-                                        weeks: weeks,
+                                        group: group!,
                                         day: 2,
+                                        selectedDay: 2,
                                       )),
                             );
                           },

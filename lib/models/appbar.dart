@@ -39,14 +39,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                     onPressed: () => Navigator.pop(context, 'Cancel'),
                     child: const Text(
                       'Cancel',
-                      style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
                     ),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'OK'),
                     child: const Text(
                       'OK',
-                      style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      style:
+                          TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
                     ),
                   ),
                 ],

@@ -5,12 +5,14 @@ import 'package:timetable/screens/notes.dart';
 import 'package:timetable/screens/teachers.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +24,12 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  const MyHomePage({
+    Key? key,
+  }) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
+  // ignore: library_private_types_in_public_api, no_logic_in_create_state
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -33,6 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final Color navigationBarColor = Colors.white;
   int selectedIndex = 0;
   late PageController pageController;
+
   @override
   void initState() {
     super.initState();
