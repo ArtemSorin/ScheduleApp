@@ -34,7 +34,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Color navigationBarColor = Colors.white;
+  final Color navigationBarColor = const Color.fromARGB(255, 91, 117, 240);
+  final Color selecterBarColor = Colors.white;
   int selectedIndex = 0;
   late PageController pageController;
 
@@ -73,6 +74,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         bottomNavigationBar: WaterDropNavBar(
           backgroundColor: navigationBarColor,
+          waterDropColor: selecterBarColor,
           onItemSelected: (int index) {
             setState(() {
               selectedIndex = index;

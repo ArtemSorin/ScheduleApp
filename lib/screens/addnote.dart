@@ -11,7 +11,7 @@ class AddNote extends StatelessWidget {
     final myControllerContent = TextEditingController();
 
     return Scaffold(
-      //appBar: const MyAppBar(str: 'Создать заметку'),
+      appBar: const MyAppBar(str: 'Создать заметку'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

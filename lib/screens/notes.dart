@@ -38,17 +38,14 @@ class _NotesState extends State<Notes> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: StreamBuilder<List<Map<String, dynamic>>>(
         stream: _notesStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              body: Column(children: [
-                MyAppBar(groupStr: 'Заметки', width: width, title: ''),
-                Expanded(
-                    child: ListView.builder(
+                appBar: const MyAppBar(str: 'Заметки'),
+                body: ListView.builder(
                   padding: const EdgeInsets.all(12),
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, i) {
@@ -96,9 +93,7 @@ class _NotesState extends State<Notes> {
                       ),
                     );
                   },
-                ))
-              ]),
-            );
+                ));
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }

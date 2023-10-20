@@ -22,7 +22,7 @@ class EditNote extends StatelessWidget {
     myControllerContent.text = content;
 
     return Scaffold(
-      //appBar: const MyAppBar(str: 'Редактировать заметку'),
+      appBar: const MyAppBar(str: 'Редактировать заметку'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

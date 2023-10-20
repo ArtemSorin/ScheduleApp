@@ -18,7 +18,7 @@ class CurrentTeacher extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SizedBox(
-          height: 200,
+          height: 150,
           child: Container(
             decoration: const BoxDecoration(
               color: Color.fromARGB(255, 91, 117, 240),
@@ -35,7 +35,8 @@ class CurrentTeacher extends StatelessWidget {
                     child: Column(
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(top: 120),
+                          padding: const EdgeInsets.only(
+                              top: 80, left: 10, right: 10),
                           child: Card(
                             child: Row(
                               children: [
