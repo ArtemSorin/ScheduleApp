@@ -38,54 +38,66 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
   final int? group;
   final String groupStr;
 
-  void initstate() {
+  @override
+  void initState() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     Future<Map<String, dynamic>> futureTable = fetchDataWithoutParams(group!);
     return Scaffold(
-        appBar: MyAppBar(str: groupStr),
         body: FutureBuilder<Map<String, dynamic>>(
             future: futureTable,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                return ListView.builder(
-                    padding: const EdgeInsets.all(12),
-                    itemCount: snapshot.data!['weeks']!.length,
-                    itemBuilder: (context, i) {
-                      return Card(
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => CurrentDay(
-                                        groupStr: groupStr,
-                                        title:
-                                            '${snapshot.data!['weeks'][i]} неделя',
-                                        week: i + 1,
-                                        group: group!,
-                                        day: 2,
-                                        selectedDay: 2,
-                                      )),
+                return Scaffold(
+                    body: Column(children: [
+                  MyAppBar(
+                      groupStr: groupStr.substring(0, groupStr.length),
+                      width: width,
+                      title: ''),
+                  Expanded(
+                      child: ListView.builder(
+                          padding: const EdgeInsets.all(12),
+                          itemCount: snapshot.data!['weeks']!.length,
+                          itemBuilder: (context, i) {
+                            return Card(
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => CurrentDay(
+                                              groupStr: groupStr,
+                                              title:
+                                                  '${snapshot.data!['weeks'][i]} неделя',
+                                              week: i + 1,
+                                              group: group!,
+                                              day: 2,
+                                              selectedDay: 2,
+                                            )),
+                                  );
+                                },
+                                title: Text(
+                                  '${snapshot.data!['weeks'][i]} неделя',
+                                  style: TextStyle(
+                                      color: snapshot.data!['table']['week'] ==
+                                              i + 1
+                                          ? const Color.fromARGB(
+                                              255, 91, 117, 240)
+                                          : Colors.black,
+                                      fontWeight: snapshot.data!['table']
+                                                  ['week'] ==
+                                              i + 1
+                                          ? FontWeight.bold
+                                          : FontWeight.normal),
+                                ),
+                              ),
                             );
-                          },
-                          title: Text(
-                            '${snapshot.data!['weeks'][i]} неделя',
-                            style: TextStyle(
-                                color: snapshot.data!['table']['week'] == i + 1
-                                    ? const Color.fromARGB(255, 91, 117, 240)
-                                    : Colors.black,
-                                fontWeight:
-                                    snapshot.data!['table']['week'] == i + 1
-                                        ? FontWeight.bold
-                                        : FontWeight.normal),
-                          ),
-                        ),
-                      );
-                    });
+                          }))
+                ]));
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }

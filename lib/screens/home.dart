@@ -35,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const MyAppBar(str: 'Расписание'),
+        //appBar: const MyAppBar(str: 'Расписание'),
         body: FutureBuilder<Map<String, dynamic>>(
             future: futureTable,
             builder: (context, snapshot) {

@@ -3,8 +3,6 @@ import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 import 'package:timetable/screens/currentteacher.dart';
 
-import '../models/appbar.dart';
-
 class Teachers extends StatelessWidget {
   const Teachers({super.key});
 
@@ -62,7 +60,6 @@ class _TeachersPageState extends State<TeachersPage> {
       for (int i = 3; i < 35; i += 2) {
         int firstSpaceIndex = mails[i].indexOf(' ');
         int secondSpaceIndex = mails[i].indexOf(' ', firstSpaceIndex + 1);
-        // Если в найден второй пробел, обрезаем строку, иначе оставляем строку без изменений
         if (secondSpaceIndex != -1) {
           String newMail = mails[i].substring(0, secondSpaceIndex);
           listMails.add(newMail);
@@ -75,46 +72,81 @@ class _TeachersPageState extends State<TeachersPage> {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Scaffold(
-      appBar: const MyAppBar(str: 'Сотрудники'),
-      body: ListView.builder(
-        padding: const EdgeInsets.all(12),
-        itemCount: listTitles.length,
-        itemBuilder: (context, i) {
-          return Card(
-            child: ListTile(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CurrentTeacher(
-                            title: listTitles[i],
-                            image: listImages[i]!,
-                            post: listPosts[i],
-                            mail: listMails[i],
-                          )),
-                );
-              },
-              leading: CircleAvatar(
-                radius: 25.0,
-                backgroundImage: NetworkImage(listImages[i]!),
-                backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 91, 117, 240),
+        body: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.only(top: 100),
+              child: Text(
+                "Преподаватели",
+                style: TextStyle(
+                    fontSize: 34,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
               ),
-              title: SizedBox(
-                width: double.infinity,
-                child: Text(
-                  listTitles[i],
-                  style: const TextStyle(
-                      color: Color.fromARGB(255, 91, 117, 240),
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15),
-                ),
-              ),
-              subtitle: Text(listMails[i]),
             ),
-          );
-        },
-      ),
-    );
+            Padding(
+              padding: const EdgeInsets.only(top: 60),
+              child: Container(
+                  width: width,
+                  height: height - 260,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(40),
+                      topRight: Radius.circular(40),
+                    ),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 50),
+                    child: Expanded(
+                      child: ListView.builder(
+                        padding: const EdgeInsets.all(12),
+                        itemCount: listTitles.length,
+                        itemBuilder: (context, i) {
+                          return Card(
+                            child: ListTile(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => CurrentTeacher(
+                                      title: listTitles[i],
+                                      image: listImages[i]!,
+                                      post: listPosts[i],
+                                      mail: listMails[i],
+                                    ),
+                                  ),
+                                );
+                              },
+                              leading: CircleAvatar(
+                                radius: 25.0,
+                                backgroundImage: NetworkImage(listImages[i]!),
+                                backgroundColor: Colors.transparent,
+                              ),
+                              title: SizedBox(
+                                width: double.infinity,
+                                child: Text(
+                                  listTitles[i],
+                                  style: const TextStyle(
+                                    color: Color.fromARGB(255, 91, 117, 240),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ),
+                              subtitle: Text(listMails[i]),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  )),
+            ),
+          ],
+        ));
   }
 }

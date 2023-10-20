@@ -5,7 +5,7 @@ import 'package:timetable/screens/notes.dart';
 import 'package:timetable/screens/teachers.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
-Future<void> main() async {
+void main() {
   runApp(const MyApp());
 }
 
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: navigationBarColor,
+        statusBarColor: const Color.fromARGB(255, 91, 117, 240),
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
@@ -58,7 +59,6 @@ class _MyHomePageState extends State<MyHomePage> {
           controller: pageController,
           children: <Widget>[
             const Home(),
-            const Notes(),
             const Teachers(),
             Container(
               alignment: Alignment.center,
@@ -68,6 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 color: Colors.blue[400],
               ),
             ),
+            const Notes(),
           ],
         ),
         bottomNavigationBar: WaterDropNavBar(
@@ -86,7 +87,6 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.calendar_month_rounded,
               outlinedIcon: Icons.calendar_month_outlined,
             ),
-            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
             BarItem(
               filledIcon: Icons.people,
               outlinedIcon: Icons.people_alt_outlined,
@@ -95,6 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.school_rounded,
               outlinedIcon: Icons.school_outlined,
             ),
+            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
           ],
         ),
       ),

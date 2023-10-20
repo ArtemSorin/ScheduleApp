@@ -11,7 +11,7 @@ class AddNote extends StatelessWidget {
     final myControllerContent = TextEditingController();
 
     return Scaffold(
-      appBar: const MyAppBar(str: 'Создать заметку'),
+      //appBar: const MyAppBar(str: 'Создать заметку'),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -45,12 +45,12 @@ class AddNote extends StatelessWidget {
         tooltip: 'Add',
         onPressed: () async {
           await NoteDatabase.instance.addNewNote(
-                  title: myControllerTitle.text,
-                  content: myControllerContent.text,
-                  timestamp: DateTime.now().toString(),
-                );
-                // ignore: use_build_context_synchronously
-                Navigator.pop(context);
+            title: myControllerTitle.text,
+            content: myControllerContent.text,
+            timestamp: DateTime.now().toString(),
+          );
+          // ignore: use_build_context_synchronously
+          Navigator.pop(context);
         },
         backgroundColor: const Color.fromARGB(255, 91, 117, 240),
         child: const Icon(Icons.add),
