@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/schedule.dart';
-import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/currentweek.dart';
+
+import '../data/schedule.dart';
+import '../models/appbar.dart';
+import 'currentweek.dart';
 
 class ListWeeks extends StatelessWidget {
   const ListWeeks(
@@ -38,27 +39,20 @@ class ListWeeksPage extends StatefulWidget {
   final List<dynamic> weeks;
 
   @override
-  // ignore: no_logic_in_create_state
-  State<ListWeeksPage> createState() =>
-      _ListWeeksPageState(group, weeks, groupStr);
+  State<ListWeeksPage> createState() => _ListWeeksPageState();
 }
 
 class _ListWeeksPageState extends State<ListWeeksPage> {
-  _ListWeeksPageState(this.group, this.weeks, this.groupStr);
-
-  final int? group;
-  final String groupStr;
-  final List<dynamic> weeks;
-
   void initstate() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>> futureTable = fetchDataWithoutWeeks(group!);
+    Future<Map<String, dynamic>> futureTable =
+        fetchDataWithoutWeeks(widget.group!);
     return Scaffold(
-        appBar: MyAppBar(str: groupStr),
+        appBar: MyAppBar(str: widget.groupStr),
         body: FutureBuilder<Map<String, dynamic>>(
             future: futureTable,
             builder: (context, snapshot) {
@@ -74,12 +68,12 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) => CurrentWeek(
-                                        groupStr: groupStr,
+                                        groupStr: widget.groupStr,
                                         title:
                                             '${snapshot.data!['weeks'][i]} неделя',
                                         week: i + 1,
-                                        group: group,
-                                        weeks: weeks,
+                                        group: widget.group,
+                                        weeks: widget.weeks,
                                       )),
                             );
                           },

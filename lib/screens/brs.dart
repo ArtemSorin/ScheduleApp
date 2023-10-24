@@ -17,7 +17,6 @@ class BRSPage extends StatefulWidget {
   const BRSPage({super.key});
 
   @override
-  // ignore: no_logic_in_create_state
   State<BRSPage> createState() => _BRSPageState();
 }
 

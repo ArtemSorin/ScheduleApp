@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/schedule.dart';
-import 'package:timetable/models/appbar.dart';
+
+import '../data/schedule.dart';
+import '../models/appbar.dart';
 
 class CurrentDay extends StatelessWidget {
   const CurrentDay(
@@ -53,38 +54,27 @@ class CurrentDayPage extends StatefulWidget {
   final String groupStr;
 
   @override
-  State<CurrentDayPage> createState() =>
-      // ignore: no_logic_in_create_state
-      _CurrentDayPageState(title, day, week, group, name, groupStr);
+  State<CurrentDayPage> createState() => _CurrentDayPageState();
 }
 
 class _CurrentDayPageState extends State<CurrentDayPage> {
-  _CurrentDayPageState(
-      this.title, this.day, this.week, this.group, this.name, this.groupStr);
-
-  final String title;
-  final String name;
-  final int day;
-  final int week;
-  final int? group;
-  final String groupStr;
-
   void initstate() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>> futureTable = fetchData(group!, week);
+    Future<Map<String, dynamic>> futureTable =
+        fetchData(widget.group!, widget.week);
     return FutureBuilder<Map<String, dynamic>>(
         future: futureTable,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return Scaffold(
-              appBar: MyAppBar(str: '$groupStr, $title'),
+              appBar: MyAppBar(str: '${widget.groupStr}, ${widget.title}'),
               body: ListView.builder(
                 padding: const EdgeInsets.all(12),
-                itemCount: snapshot.data!['table']['table'][day]!.length,
+                itemCount: snapshot.data!['table']['table'][widget.day]!.length,
                 itemBuilder: (context, index) {
                   TimeOfDay time1 = TimeOfDay(
                       hour: snapshot.data!['table']['table'][1][index] ==
@@ -129,8 +119,8 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
                               ? '⏰'
                               : snapshot.data!['table']['table'][1][index],
                           style: TextStyle(
-                              color: snapshot.data!['table']['table'][day]
-                                          [index] ==
+                              color: snapshot.data!['table']['table']
+                                          [widget.day][index] ==
                                       'Время'
                                   ? Colors.black
                                   : (comparison1 < 0 && comparison2 > 0)
@@ -139,7 +129,7 @@ class _CurrentDayPageState extends State<CurrentDayPage> {
                               fontWeight: FontWeight.bold),
                         ),
                         title: Text(
-                          snapshot.data!['table']['table'][day][index],
+                          snapshot.data!['table']['table'][widget.day][index],
                           style: (comparison1 < 0 && comparison2 > 0)
                               ? const TextStyle(color: Colors.white)
                               : const TextStyle(color: Colors.black),

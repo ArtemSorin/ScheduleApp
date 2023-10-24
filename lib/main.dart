@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:timetable/screens/home.dart';
-import 'package:timetable/screens/notes.dart';
-import 'package:timetable/screens/teachers.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
+import 'screens/home.dart';
+import 'screens/teachers.dart';
 import 'screens/brs.dart';
+import 'screens/notes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,8 +27,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -52,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          children: const <Widget>[Home(), Teachers(), Notes(), BRS()],
+          children: const <Widget>[Home(), Teachers(), BRS(), Notes()],
         ),
         bottomNavigationBar: WaterDropNavBar(
           backgroundColor: navigationBarColor,
@@ -74,11 +73,11 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.group,
               outlinedIcon: Icons.group_outlined,
             ),
-            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
             BarItem(
               filledIcon: Icons.school_rounded,
               outlinedIcon: Icons.school_outlined,
             ),
+            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
           ],
         ),
       ),

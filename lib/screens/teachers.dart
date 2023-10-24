@@ -19,7 +19,6 @@ class TeachersPage extends StatefulWidget {
   const TeachersPage({super.key});
 
   @override
-  // ignore: no_logic_in_create_state
   State<TeachersPage> createState() => _TeachersPageState();
 }
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/schedule.dart';
-import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/weeks.dart';
 
-import '../data/lists.dart';
+import '../constants/lists.dart';
+import '../data/schedule.dart';
+import '../models/appbar.dart';
+import 'weeks.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});

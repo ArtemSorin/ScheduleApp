@@ -1,10 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:timetable/data/database.dart';
-import 'package:timetable/models/appbar.dart';
-import 'package:timetable/screens/addnote.dart';
-import 'package:timetable/screens/editnote.dart';
+
+import '../data/database.dart';
+import '../models/appbar.dart';
+import 'addnote.dart';
+import 'editnote.dart';
 
 class Notes extends StatefulWidget {
   const Notes({Key? key}) : super(key: key);

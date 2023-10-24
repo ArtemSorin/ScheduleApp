@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:timetable/data/database.dart';
-import 'package:timetable/models/appbar.dart';
+
+import '../data/database.dart';
+import '../models/appbar.dart';
 
 class EditNote extends StatelessWidget {
   const EditNote({
@@ -54,15 +55,20 @@ class EditNote extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add',
-        onPressed: () async {
-         await NoteDatabase.instance.updateNote(
-                      id: id,
-                      title: myControllerTitle.text,
-                      content: myControllerContent.text,
-                      timestamp: DateTime.now().toString(),
-                    );
-                    // ignore: use_build_context_synchronously
-                    Navigator.pop(context);
+        onPressed: () {
+          NoteDatabase.instance
+              .updateNote(
+            id: id,
+            title: myControllerTitle.text,
+            content: myControllerContent.text,
+            timestamp: DateTime.now().toString(),
+          )
+              .then((_) {
+            Navigator.pop(context);
+          }).catchError((error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('An error occurred: $error')));
+          });
         },
         backgroundColor: const Color.fromARGB(255, 91, 117, 240),
         child: const Icon(Icons.create),

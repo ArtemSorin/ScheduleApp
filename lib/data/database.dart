@@ -24,7 +24,8 @@ class NoteDatabase {
   }
 
   FutureOr<void> _createDB(Database db, int version) async {
-    await db.execute('''
+    await db.execute(
+        '''
       CREATE TABLE notes(
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
