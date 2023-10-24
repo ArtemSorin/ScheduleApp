@@ -39,61 +39,59 @@ class _NotesState extends State<Notes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white70,
+      appBar: const MyAppBar(str: 'Заметки'),
       body: StreamBuilder<List<Map<String, dynamic>>>(
         stream: _notesStream,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return Scaffold(
-                appBar: const MyAppBar(str: 'Заметки'),
-                body: ListView.builder(
-                  padding: const EdgeInsets.all(12),
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, i) {
-                    return Card(
-                      child: ListTile(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => EditNote(
-                                id: snapshot.data![i]['id'],
-                                title: snapshot.data![i]['title'],
-                                content: snapshot.data![i]['content'],
-                              ),
-                            ),
-                          ).then((value) {
-                            refreshNotes();
-                          });
-                        },
-                        title: Text(
-                          snapshot.data![i]['title'].length > 20
-                              ? snapshot.data![i]['title'].substring(0, 20) +
-                                  '...'
-                              : snapshot.data![i]['title'],
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 91, 117, 240),
-                            fontWeight: FontWeight.bold,
+            return ListView.builder(
+              padding: const EdgeInsets.all(12),
+              itemCount: snapshot.data!.length,
+              itemBuilder: (context, i) {
+                return Card(
+                  child: ListTile(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EditNote(
+                            id: snapshot.data![i]['id'],
+                            title: snapshot.data![i]['title'],
+                            content: snapshot.data![i]['content'],
                           ),
                         ),
-                        subtitle: Text(snapshot.data![i]['content'].length > 30
-                            ? snapshot.data![i]['content'].substring(0, 30) +
-                                '...'
-                            : snapshot.data![i]['content']),
-                        trailing: IconButton(
-                          icon: const Icon(
-                            Icons.delete_forever_rounded,
-                            color: Color.fromARGB(255, 91, 117, 240),
-                          ),
-                          onPressed: () {
-                            NoteDatabase.instance
-                                .deleteNote(id: snapshot.data![i]['id']);
-                            refreshNotes();
-                          },
-                        ),
+                      ).then((value) {
+                        refreshNotes();
+                      });
+                    },
+                    title: Text(
+                      snapshot.data![i]['title'].length > 20
+                          ? snapshot.data![i]['title'].substring(0, 20) + '...'
+                          : snapshot.data![i]['title'],
+                      style: const TextStyle(
+                        color: Color.fromARGB(255, 91, 117, 240),
+                        fontWeight: FontWeight.bold,
                       ),
-                    );
-                  },
-                ));
+                    ),
+                    subtitle: Text(snapshot.data![i]['content'].length > 30
+                        ? snapshot.data![i]['content'].substring(0, 30) + '...'
+                        : snapshot.data![i]['content']),
+                    trailing: IconButton(
+                      icon: const Icon(
+                        Icons.delete_forever_rounded,
+                        color: Color.fromARGB(255, 91, 117, 240),
+                      ),
+                      onPressed: () {
+                        NoteDatabase.instance
+                            .deleteNote(id: snapshot.data![i]['id']);
+                        refreshNotes();
+                      },
+                    ),
+                  ),
+                );
+              },
+            );
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }

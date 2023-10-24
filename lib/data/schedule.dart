@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-Future<Map<String, dynamic>> fetchDataWithoutParams(int group) async {
+Future<Map<String, dynamic>> fetchDataWithoutWeeks(int group) async {
   final response = await http.get(
       Uri.parse('https://ictis.ru/api?request=schedule&group=$group.html'));
 
@@ -10,7 +10,7 @@ Future<Map<String, dynamic>> fetchDataWithoutParams(int group) async {
     Map<String, dynamic> userMap = jsonDecode(response.body);
     return userMap;
   } else {
-    throw Exception('Failed to load CoinsList');
+    throw Exception('Failed to load List');
   }
 }
 
@@ -22,7 +22,7 @@ Future<Map<String, dynamic>> fetchData(int group, int week) async {
     Map<String, dynamic> userMap = jsonDecode(response.body);
     return userMap;
   } else {
-    throw Exception('Failed to load CoinsList');
+    throw Exception('Failed to load List');
   }
 }
 

@@ -5,14 +5,14 @@ import 'package:timetable/screens/notes.dart';
 import 'package:timetable/screens/teachers.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
+import 'screens/brs.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({
-    Key? key,
-  }) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,21 +24,17 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({
-    Key? key,
-  }) : super(key: key);
+  const MyHomePage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api, no_logic_in_create_state
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final Color navigationBarColor = const Color.fromARGB(255, 91, 117, 240);
-  final Color selecterBarColor = Colors.white;
+  final Color navigationBarColor = Colors.white;
   int selectedIndex = 0;
   late PageController pageController;
-
   @override
   void initState() {
     super.initState();
@@ -50,31 +46,16 @@ class _MyHomePageState extends State<MyHomePage> {
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
         systemNavigationBarColor: navigationBarColor,
-        statusBarColor: const Color.fromARGB(255, 91, 117, 240),
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        // backgroundColor: Colors.grey,
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          children: <Widget>[
-            const Home(),
-            const Teachers(),
-            Container(
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.school_rounded,
-                size: 56,
-                color: Colors.blue[400],
-              ),
-            ),
-            const Notes(),
-          ],
+          children: const <Widget>[Home(), Teachers(), Notes(), BRS()],
         ),
         bottomNavigationBar: WaterDropNavBar(
           backgroundColor: navigationBarColor,
-          waterDropColor: selecterBarColor,
           onItemSelected: (int index) {
             setState(() {
               selectedIndex = index;
@@ -90,14 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
               outlinedIcon: Icons.calendar_month_outlined,
             ),
             BarItem(
-              filledIcon: Icons.people,
-              outlinedIcon: Icons.people_alt_outlined,
+              filledIcon: Icons.group,
+              outlinedIcon: Icons.group_outlined,
             ),
+            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
             BarItem(
               filledIcon: Icons.school_rounded,
               outlinedIcon: Icons.school_outlined,
             ),
-            BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
           ],
         ),
       ),

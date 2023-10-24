@@ -55,14 +55,14 @@ class EditNote extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         tooltip: 'Add',
         onPressed: () async {
-          await NoteDatabase.instance.updateNote(
-            id: id,
-            title: myControllerTitle.text,
-            content: myControllerContent.text,
-            timestamp: DateTime.now().toString(),
-          );
-          // ignore: use_build_context_synchronously
-          Navigator.pop(context);
+         await NoteDatabase.instance.updateNote(
+                      id: id,
+                      title: myControllerTitle.text,
+                      content: myControllerContent.text,
+                      timestamp: DateTime.now().toString(),
+                    );
+                    // ignore: use_build_context_synchronously
+                    Navigator.pop(context);
         },
         backgroundColor: const Color.fromARGB(255, 91, 117, 240),
         child: const Icon(Icons.create),
