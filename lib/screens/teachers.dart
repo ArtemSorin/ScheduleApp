@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 
 import '../models/appbar.dart';
+import 'currentteacher.dart';
 
 class Teachers extends StatelessWidget {
   const Teachers({super.key});
@@ -80,6 +81,7 @@ class _TeachersPageState extends State<TeachersPage> {
 
   @override
   Widget build(BuildContext context) {
+    getWebsiteData();
     return Scaffold(
         appBar: const MyAppBar(str: 'Сотрудники'),
         body: listTitles.isEmpty
@@ -90,7 +92,16 @@ class _TeachersPageState extends State<TeachersPage> {
                 itemBuilder: (context, i) {
                   return Card(
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => CurrentTeacher(
+                                    title: listTitles[i],
+                                    image: listImages[i]!,
+                                    post: listPosts[i],
+                                    mail: listMails[i])));
+                      },
                       leading: CircleAvatar(
                         radius: 25.0,
                         backgroundImage: NetworkImage(listImages[i]!),
