@@ -42,6 +42,7 @@ dependencies:
   path_provider: ^2.0.15
   intl: ^0.18.1
   html: ^0.15.4
+  home_widget: ^0.3.0
 
 dev_dependencies:
   flutter_test:

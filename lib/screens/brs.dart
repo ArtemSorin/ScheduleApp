@@ -85,7 +85,8 @@ class _BRSPageState extends State<BRSPage> {
                 padding: const EdgeInsets.all(8),
                 itemCount: listTitles.length,
                 itemBuilder: (context, i) {
-                  return ListTile(
+                  return Card(
+                      child: ListTile(
                     leading: CircleAvatar(
                       backgroundColor: const Color.fromARGB(255, 91, 117, 240),
                       child: Text(listScores[i]),
@@ -97,7 +98,7 @@ class _BRSPageState extends State<BRSPage> {
                     ),
                     subtitle: Text(listCurrentScores[i]),
                     trailing: Text(listTypes[i]),
-                  );
+                  ));
                 },
               ));
   }
