@@ -61,6 +61,7 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                     padding: const EdgeInsets.all(12),
                     itemCount: snapshot.data!['weeks']!.length,
                     itemBuilder: (context, i) {
+                      int currentDay = DateTime.now().weekday;
                       return Card(
                         child: ListTile(
                           onTap: () {
@@ -72,8 +73,9 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                                         title:
                                             '${snapshot.data!['weeks'][i]} неделя',
                                         week: i + 1,
-                                        group: widget.group,
-                                        weeks: widget.weeks,
+                                        group: widget.group!,
+                                        day: currentDay + 1,
+                                        selectedDay: currentDay + 1,
                                       )),
                             );
                           },
