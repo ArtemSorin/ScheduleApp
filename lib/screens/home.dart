@@ -79,19 +79,18 @@ class _MyHomePageState extends State<MyHomePage> {
                       },
                     ));
               } else if (snapshot.hasError) {
-                return const Center(
+                return Center(
                   child: Text(
                     "Расписание ещё не существует",
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        color: Color.fromARGB(255, 91, 117, 240),
-                        fontWeight: FontWeight.bold),
+                        color: lightBlue, fontWeight: FontWeight.bold),
                   ),
                 );
               }
-              return const Center(
+              return Center(
                 child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 91, 117, 240),
+                  color: lightBlue,
                 ),
               );
             }));

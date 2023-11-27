@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/lists.dart';
 import '../data/schedule.dart';
 import '../models/appbar.dart';
 import 'currentweek.dart';
@@ -83,7 +84,7 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                             '${snapshot.data!['weeks'][i]} неделя',
                             style: TextStyle(
                                 color: snapshot.data!['table']['week'] == i + 1
-                                    ? const Color.fromARGB(255, 91, 117, 240)
+                                    ? lightBlue
                                     : Colors.black,
                                 fontWeight:
                                     snapshot.data!['table']['week'] == i + 1
@@ -96,9 +97,9 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               }
-              return const Center(
+              return Center(
                 child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 91, 117, 240),
+                  color: lightBlue,
                 ),
               );
             }));

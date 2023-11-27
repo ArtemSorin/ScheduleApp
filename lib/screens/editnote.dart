@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/lists.dart';
 import '../data/database.dart';
 import '../models/appbar.dart';
 
@@ -70,7 +71,7 @@ class EditNote extends StatelessWidget {
                 SnackBar(content: Text('An error occurred: $error')));
           });
         },
-        backgroundColor: const Color.fromARGB(255, 91, 117, 240),
+        backgroundColor: lightBlue,
         child: const Icon(Icons.create),
       ),
     );

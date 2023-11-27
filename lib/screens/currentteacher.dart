@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/lists.dart';
 import '../models/appbar.dart';
 
 class CurrentTeacher extends StatelessWidget {
@@ -51,8 +52,8 @@ class CurrentTeacher extends StatelessWidget {
                                     left: 5, top: 10, right: 10, bottom: 0),
                                 child: Text(
                                   title,
-                                  style: const TextStyle(
-                                      color: Color.fromARGB(255, 91, 117, 240),
+                                  style: TextStyle(
+                                      color: lightBlue,
                                       fontWeight: FontWeight.bold,
                                       fontSize: 17),
                                 ),
@@ -77,12 +78,12 @@ class CurrentTeacher extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Padding(
-                            padding: EdgeInsets.all(10),
+                          Padding(
+                            padding: const EdgeInsets.all(10),
                             child: Text(
                               'Контактная информация:',
                               style: TextStyle(
-                                  color: Color.fromARGB(255, 91, 117, 240),
+                                  color: lightBlue,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 17),
                             ),

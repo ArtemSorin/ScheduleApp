@@ -72,10 +72,6 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.group,
               outlinedIcon: Icons.group_outlined,
             ),
-            // BarItem(
-            //   filledIcon: Icons.school_rounded,
-            //   outlinedIcon: Icons.school_outlined,
-            // ),
             BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
           ],
         ),

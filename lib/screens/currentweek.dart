@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:timetable/data/schedule.dart';
 import 'package:timetable/models/appbar.dart';
 
+import '../constants/lists.dart';
+
 class CurrentWeek extends StatelessWidget {
   const CurrentWeek(
       {super.key,
@@ -169,7 +171,7 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
                               time2InMinutes.compareTo(currentTimeInMinutes);
                           return Card(
                               color: (comparison1 < 0 && comparison2 > 0)
-                                  ? const Color.fromARGB(255, 91, 117, 240)
+                                  ? lightBlue
                                   : const Color.fromARGB(255, 255, 255, 255),
                               child: ListTile(
                                 leading: Text(
@@ -206,9 +208,9 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const Center(
+          return Center(
             child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 91, 117, 240),
+              color: lightBlue,
             ),
           );
         });

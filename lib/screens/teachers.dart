@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:html/dom.dart' as dom;
 
+import '../constants/lists.dart';
 import '../models/appbar.dart';
 import 'currentteacher.dart';
 
@@ -85,9 +86,9 @@ class _TeachersPageState extends State<TeachersPage> {
     return Scaffold(
         appBar: const MyAppBar(str: 'Сотрудники'),
         body: listTitles.isEmpty
-            ? const Center(
+            ? Center(
                 child: CircularProgressIndicator(
-                  color: Color.fromARGB(255, 91, 117, 240),
+                  color: lightBlue,
                 ),
               )
             : ListView.builder(
@@ -115,8 +116,8 @@ class _TeachersPageState extends State<TeachersPage> {
                         width: double.infinity,
                         child: Text(
                           listTitles[i],
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 91, 117, 240),
+                          style: TextStyle(
+                            color: lightBlue,
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                           ),

@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 List<String> groups = [
   '1 курс',
   'КТбо1-6',
@@ -52,3 +54,5 @@ List<String> days = [
   'Суббота'
 ];
 List<int> numdays = [2, 3, 4, 5, 6, 7];
+
+Color lightBlue = const Color.fromARGB(255, 91, 117, 240);

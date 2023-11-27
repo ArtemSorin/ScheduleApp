@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../constants/lists.dart';
+
 class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String str;
 
@@ -20,7 +22,7 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
         statusBarBrightness: Brightness.light,
       ),
       leading: IconButton(
-        color: const Color.fromARGB(255, 91, 117, 240),
+        color: lightBlue,
         icon: const Icon(Icons.menu),
         onPressed: () {},
       ),
@@ -37,16 +39,16 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
                 actions: <Widget>[
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'Cancel'),
-                    child: const Text(
+                    child: Text(
                       'Cancel',
-                      style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      style: TextStyle(color: lightBlue),
                     ),
                   ),
                   TextButton(
                     onPressed: () => Navigator.pop(context, 'OK'),
-                    child: const Text(
+                    child: Text(
                       'OK',
-                      style: TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+                      style: TextStyle(color: lightBlue),
                     ),
                   ),
                 ],
@@ -54,12 +56,12 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
             );
           },
           icon: const Icon(Icons.question_mark),
-          color: const Color.fromARGB(255, 91, 117, 240),
+          color: lightBlue,
         )
       ],
       title: Text(
         str,
-        style: const TextStyle(color: Color.fromARGB(255, 91, 117, 240)),
+        style: TextStyle(color: lightBlue),
       ),
       centerTitle: true,
     );

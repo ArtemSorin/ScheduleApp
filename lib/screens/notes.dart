@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../constants/lists.dart';
 import '../data/database.dart';
 import '../models/appbar.dart';
 import 'addnote.dart';
@@ -70,8 +71,8 @@ class _NotesState extends State<Notes> {
                       snapshot.data![i]['title'].length > 20
                           ? snapshot.data![i]['title'].substring(0, 20) + '...'
                           : snapshot.data![i]['title'],
-                      style: const TextStyle(
-                        color: Color.fromARGB(255, 91, 117, 240),
+                      style: TextStyle(
+                        color: lightBlue,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -79,9 +80,9 @@ class _NotesState extends State<Notes> {
                         ? snapshot.data![i]['content'].substring(0, 30) + '...'
                         : snapshot.data![i]['content']),
                     trailing: IconButton(
-                      icon: const Icon(
+                      icon: Icon(
                         Icons.delete_forever_rounded,
-                        color: Color.fromARGB(255, 91, 117, 240),
+                        color: lightBlue,
                       ),
                       onPressed: () {
                         NoteDatabase.instance
@@ -96,9 +97,9 @@ class _NotesState extends State<Notes> {
           } else if (snapshot.hasError) {
             return Text('${snapshot.error}');
           }
-          return const Center(
+          return Center(
             child: CircularProgressIndicator(
-              color: Color.fromARGB(255, 91, 117, 240),
+              color: lightBlue,
             ),
           );
         },
@@ -112,7 +113,7 @@ class _NotesState extends State<Notes> {
           );
           refreshNotes();
         },
-        backgroundColor: const Color.fromARGB(255, 91, 117, 240),
+        backgroundColor: lightBlue,
         child: const Icon(Icons.add),
       ),
     );
