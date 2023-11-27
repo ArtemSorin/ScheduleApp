@@ -85,7 +85,11 @@ class _TeachersPageState extends State<TeachersPage> {
     return Scaffold(
         appBar: const MyAppBar(str: 'Сотрудники'),
         body: listTitles.isEmpty
-            ? const Center(child: CircularProgressIndicator())
+            ? const Center(
+                child: CircularProgressIndicator(
+                  color: Color.fromARGB(255, 91, 117, 240),
+                ),
+              )
             : ListView.builder(
                 padding: const EdgeInsets.all(8),
                 itemCount: listTitles.length,

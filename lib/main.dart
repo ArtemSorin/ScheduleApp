@@ -4,7 +4,6 @@ import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 import 'screens/home.dart';
 import 'screens/teachers.dart';
-import 'screens/brs.dart';
 import 'screens/notes.dart';
 
 void main() {
@@ -51,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
-          children: const <Widget>[Home(), Teachers(), BRS(), Notes()],
+          children: const <Widget>[Home(), Teachers(), Notes()],
         ),
         bottomNavigationBar: WaterDropNavBar(
           backgroundColor: navigationBarColor,
@@ -73,10 +72,10 @@ class _MyHomePageState extends State<MyHomePage> {
               filledIcon: Icons.group,
               outlinedIcon: Icons.group_outlined,
             ),
-            BarItem(
-              filledIcon: Icons.school_rounded,
-              outlinedIcon: Icons.school_outlined,
-            ),
+            // BarItem(
+            //   filledIcon: Icons.school_rounded,
+            //   outlinedIcon: Icons.school_outlined,
+            // ),
             BarItem(filledIcon: Icons.task, outlinedIcon: Icons.task_outlined),
           ],
         ),
