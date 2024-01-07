@@ -61,7 +61,7 @@ class CurrentWeekPage extends StatefulWidget {
 class _CurrentWeekPageState extends State<CurrentWeekPage> {
   _CurrentWeekPageState();
 
-  late Future<Map<String, dynamic>> futureTable;
+  late Future<Schedule> futureTable;
 
   @override
   void initState() {
@@ -72,7 +72,7 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    return FutureBuilder<Map<String, dynamic>>(
+    return FutureBuilder<Schedule>(
         future: futureTable,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -102,7 +102,7 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
                                         : MaterialStateProperty.all(
                                             Colors.white)),
                                 child: Text(
-                                  snapshot.data!['table']['table'][i + 2][0],
+                                  snapshot.data!.table.table[i + 2][0],
                                   style: i + 2 == widget.selectedDay
                                       ? const TextStyle(
                                           color: Color.fromARGB(
@@ -129,34 +129,33 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
                       child: ListView.builder(
                         padding: const EdgeInsets.all(12),
                         itemCount: snapshot
-                            .data!['table']['table'][widget.selectedDay]!
-                            .length,
+                            .data!.table.table[widget.selectedDay].length,
                         itemBuilder: (context, index) {
                           TimeOfDay time1 = TimeOfDay(
-                              hour: snapshot.data!['table']['table'][1][index] ==
+                              hour: snapshot.data!.table.table[1][index] ==
                                       'Время'
                                   ? 23
-                                  : int.parse(snapshot.data!['table']['table']
-                                          [1][index]
+                                  : int.parse(snapshot
+                                      .data!.table.table[1][index]
                                       .substring(0, 2)),
-                              minute: snapshot.data!['table']['table'][1][index] ==
+                              minute: snapshot.data!.table.table[1][index] ==
                                       'Время'
                                   ? 59
-                                  : int.parse(snapshot.data!['table']['table']
-                                          [1][index]
+                                  : int.parse(snapshot
+                                      .data!.table.table[1][index]
                                       .substring(3, 5)));
                           TimeOfDay time2 = TimeOfDay(
-                              hour: snapshot.data!['table']['table'][1][index] ==
+                              hour: snapshot.data!.table.table[1][index] ==
                                       'Время'
                                   ? 23
-                                  : int.parse(snapshot.data!['table']['table']
-                                          [1][index]
+                                  : int.parse(snapshot
+                                      .data!.table.table[1][index]
                                       .substring(6, 8)),
-                              minute: snapshot.data!['table']['table'][1][index] ==
+                              minute: snapshot.data!.table.table[1][index] ==
                                       'Время'
                                   ? 59
-                                  : int.parse(snapshot.data!['table']['table']
-                                          [1][index]
+                                  : int.parse(snapshot
+                                      .data!.table.table[1][index]
                                       .substring(9, 11)));
                           DateTime now = DateTime.now();
                           TimeOfDay currentTime =
@@ -175,14 +174,13 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
                                   : const Color.fromARGB(255, 255, 255, 255),
                               child: ListTile(
                                 leading: Text(
-                                  snapshot.data!['table']['table'][1][index] ==
+                                  snapshot.data!.table.table[1][index] ==
                                           'Время'
                                       ? '⏰'
-                                      : snapshot.data!['table']['table'][1]
-                                          [index],
+                                      : snapshot.data!.table.table[1][index],
                                   style: TextStyle(
-                                      color: snapshot.data!['table']['table']
-                                                  [widget.day][index] ==
+                                      color: snapshot.data!.table
+                                                  .table[widget.day][index] ==
                                               'Время'
                                           ? Colors.black
                                           : (comparison1 < 0 && comparison2 > 0)
@@ -193,8 +191,8 @@ class _CurrentWeekPageState extends State<CurrentWeekPage> {
                                       fontWeight: FontWeight.bold),
                                 ),
                                 title: Text(
-                                  snapshot.data!['table']['table']
-                                      [widget.selectedDay][index],
+                                  snapshot.data!.table.table[widget.selectedDay]
+                                      [index],
                                   style: (comparison1 < 0 && comparison2 > 0)
                                       ? const TextStyle(color: Colors.white)
                                       : const TextStyle(color: Colors.black),

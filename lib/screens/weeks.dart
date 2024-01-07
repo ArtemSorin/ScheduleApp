@@ -50,19 +50,20 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
 
   @override
   Widget build(BuildContext context) {
-    Future<Map<String, dynamic>> futureTable =
-        fetchDataWithoutWeeks(widget.group!);
+    Future<Schedule> futureTable = fetchDataWithoutWeeks(widget.group!);
     return Scaffold(
         appBar: MyAppBar(str: widget.groupStr),
-        body: FutureBuilder<Map<String, dynamic>>(
+        body: FutureBuilder<Schedule>(
             future: futureTable,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return ListView.builder(
                     padding: const EdgeInsets.all(12),
-                    itemCount: snapshot.data!['weeks']!.length,
+                    itemCount: snapshot.data!.weeks.length,
                     itemBuilder: (context, i) {
-                      int currentDay = DateTime.now().weekday;
+                      int currentDay = DateTime.now().weekday % 7 == 0
+                          ? 6
+                          : DateTime.now().weekday % 7;
                       return Card(
                         child: ListTile(
                           onTap: () {
@@ -72,24 +73,23 @@ class _ListWeeksPageState extends State<ListWeeksPage> {
                                   builder: (context) => CurrentWeek(
                                         groupStr: widget.groupStr,
                                         title:
-                                            '${snapshot.data!['weeks'][i]} неделя',
+                                            '${snapshot.data!.weeks[i]} неделя',
                                         week: i + 1,
                                         group: widget.group!,
-                                        day: currentDay + 1,
+                                        day: currentDay,
                                         selectedDay: currentDay + 1,
                                       )),
                             );
                           },
                           title: Text(
-                            '${snapshot.data!['weeks'][i]} неделя',
+                            '${snapshot.data!.weeks[i]} неделя',
                             style: TextStyle(
-                                color: snapshot.data!['table']['week'] == i + 1
+                                color: snapshot.data!.table.week == i + 1
                                     ? lightBlue
                                     : Colors.black,
-                                fontWeight:
-                                    snapshot.data!['table']['week'] == i + 1
-                                        ? FontWeight.bold
-                                        : FontWeight.normal),
+                                fontWeight: snapshot.data!.table.week == i + 1
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
                           ),
                         ),
                       );

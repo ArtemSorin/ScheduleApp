@@ -10,9 +10,8 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: MyHomePage(),
+    return const Scaffold(
+      body: MyHomePage(),
     );
   }
 }
@@ -25,7 +24,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  Future<Map<String, dynamic>> futureTable = fetchDataWithoutWeeks(1);
+  Future<Schedule> futureTable = fetchDataWithoutWeeks(1);
 
   void initstate() {
     super.initState();
@@ -35,7 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<Map<String, dynamic>>(
+        body: FutureBuilder<Schedule>(
             future: futureTable,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -69,8 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                               builder: (context) => ListWeeks(
                                                     groupStr: groups[index],
                                                     group: numgroups[index],
-                                                    weeks:
-                                                        snapshot.data!['weeks'],
+                                                    weeks: snapshot.data!.weeks,
                                                   )),
                                         );
                                       },
